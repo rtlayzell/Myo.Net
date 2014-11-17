@@ -22,25 +22,29 @@ Struct Thalmic.Myo.Vector3: AutoLayout, AnsiClass, Class, Public, ExplicitLayout
   :System.ValueType
     Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
-    Double X : Public
-    Double Y : Public
-    Double Z : Public
     Thalmic.Myo.Vector3 Zero : Public, Static, InitOnly
   Properties:
-    Double LengthSqr 'get ' : 
-    Double Length 'get ' : 
     Double Item [Int32] 'get set' : 
+    Double Z   'get set' : 
+    Double Y   'get set' : 
+    Double X   'get set' : 
   Methods:
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Z(): PrivateScope, Public, HideBySig, SpecialName
+    set_Z(Double): PrivateScope, Public, HideBySig, SpecialName
     get_Item(Int32): PrivateScope, Public, HideBySig, SpecialName
     set_Item(Int32, Double): PrivateScope, Public, HideBySig, SpecialName
-    get_Length(): PrivateScope, Public, HideBySig, SpecialName
-    get_LengthSqr(): PrivateScope, Public, HideBySig, SpecialName
+    Length(): PrivateScope, Public, HideBySig
+    LengthSquared(): PrivateScope, Public, HideBySig
     op_Addition(Vector3, Vector3): PrivateScope, Public, Static, HideBySig, SpecialName
     op_Subtraction(Vector3, Vector3): PrivateScope, Public, Static, HideBySig, SpecialName
     op_Multiply(Double, Vector3): PrivateScope, Public, Static, HideBySig, SpecialName
     op_Multiply(Vector3, Double): PrivateScope, Public, Static, HideBySig, SpecialName
     op_Division(Vector3, Double): PrivateScope, Public, Static, HideBySig, SpecialName
-    Normalize(): PrivateScope, Public, HideBySig
+    Normalized(): PrivateScope, Public, HideBySig
     Dot(Vector3): PrivateScope, Public, HideBySig
     Cross(Vector3): PrivateScope, Public, HideBySig
     AngleTo(Vector3): PrivateScope, Public, HideBySig
@@ -85,22 +89,33 @@ Struct Thalmic.Myo.Quaternion: AutoLayout, AnsiClass, Class, Public, ExplicitLay
   :System.ValueType
     Void .ctor(Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
-    Double X : Public
-    Double Y : Public
-    Double Z : Public
-    Double W : Public
     Thalmic.Myo.Quaternion Zero : Public, Static, InitOnly
   Properties:
-    Double LengthSquared 'get ' : 
-    Double Length 'get ' : 
     Double Item [Int32] 'get set' : 
+    Double W   'get set' : 
+    Double Z   'get set' : 
+    Double Y   'get set' : 
+    Double X   'get set' : 
   Methods:
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Z(): PrivateScope, Public, HideBySig, SpecialName
+    set_Z(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_W(): PrivateScope, Public, HideBySig, SpecialName
+    set_W(Double): PrivateScope, Public, HideBySig, SpecialName
     get_Item(Int32): PrivateScope, Public, HideBySig, SpecialName
     set_Item(Int32, Double): PrivateScope, Public, HideBySig, SpecialName
-    get_Length(): PrivateScope, Public, HideBySig, SpecialName
-    get_LengthSquared(): PrivateScope, Public, HideBySig, SpecialName
+    Length(): PrivateScope, Public, HideBySig
+    LengthSquared(): PrivateScope, Public, HideBySig
+    Roll(Quaternion): PrivateScope, Public, Static, HideBySig
+    Pitch(Quaternion): PrivateScope, Public, Static, HideBySig
+    Yaw(Quaternion): PrivateScope, Public, Static, HideBySig
+    op_Addition(Quaternion, Quaternion): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Subtraction(Quaternion, Quaternion): PrivateScope, Public, Static, HideBySig, SpecialName
     op_Multiply(Quaternion, Quaternion): PrivateScope, Public, Static, HideBySig, SpecialName
-    Conjugate(): PrivateScope, Public, HideBySig
+    Inverse(): PrivateScope, Public, HideBySig
     Normalized(): PrivateScope, Public, HideBySig
 Class Thalmic.Myo.OrientationDataEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :Thalmic.Myo.MyoEventArgs
@@ -126,10 +141,10 @@ Class Thalmic.Myo.PoseEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFie
 Struct Thalmic.Myo.FirmwareVersion: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
   :System.ValueType
   Fields:
-    UInt32 FirmwareVersionMajor : Public
-    UInt32 FirmwareVersionMinor : Public
-    UInt32 FirmwareVersionPatch : Public
-    UInt32 FirmwareVersionHardwareRev : Public
+    UInt32 FirmwareVersionMajor : Public, InitOnly
+    UInt32 FirmwareVersionMinor : Public, InitOnly
+    UInt32 FirmwareVersionPatch : Public, InitOnly
+    UInt32 FirmwareVersionHardwareRev : Public, InitOnly
   Methods:
     ToString(): PrivateScope, Public, Final, Virtual, HideBySig
 Interface Thalmic.Myo.IMyo: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
@@ -146,6 +161,9 @@ Interface Thalmic.Myo.IMyo: AutoLayout, AnsiClass, Class, Public, ClassSemantics
     System.EventHandler`1[Thalmic.Myo.AccelerometerDataEventArgs] AccelerometerDataAcquired: SpecialName
     System.EventHandler`1[Thalmic.Myo.OrientationDataEventArgs] OrientationDataAcquired: SpecialName
   Methods:
+    get_Name(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_MacAddress(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FirmwareVersion(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     add_OrientationDataAcquired(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     remove_OrientationDataAcquired(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     add_AccelerometerDataAcquired(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
@@ -156,9 +174,6 @@ Interface Thalmic.Myo.IMyo: AutoLayout, AnsiClass, Class, Public, ClassSemantics
     remove_Rssi(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     add_Pose(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     remove_Pose(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
-    get_Name(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
-    get_MacAddress(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
-    get_FirmwareVersion(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     Vibrate(VibrationType): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     RequestRssi(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
 Class Thalmic.Myo.Hub: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -175,9 +190,12 @@ Class Thalmic.Myo.Hub: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     System.EventHandler`1[Thalmic.Myo.MyoEventArgs] MyoConnected: SpecialName
   Methods:
     WaitForMyo(TimeSpan): PrivateScope, Public, HideBySig
+    WaitForMyo(): PrivateScope, Public, HideBySig
     WaitForMyoAsync(TimeSpan): PrivateScope, Public, HideBySig
     Run(TimeSpan): PrivateScope, Public, HideBySig
+    Run(): PrivateScope, Public, HideBySig
     RunOnce(TimeSpan): PrivateScope, Public, HideBySig
+    RunOnce(): PrivateScope, Public, HideBySig
     RunAsync(TimeSpan): PrivateScope, Public, HideBySig
     RunOnceAsync(TimeSpan): PrivateScope, Public, HideBySig
     add_MyoConnected(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName

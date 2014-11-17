@@ -7,7 +7,9 @@ namespace Thalmic
 {
 	namespace Myo
 	{
-		///<summary>Enumeration identifying a right arm or left arm.</summary>
+		///<summary>
+		/// Enumeration identifying a right arm or left arm.
+		///</summary>
 		public enum class Arm
 		{
 			Left = libmyo_arm_left,
@@ -15,7 +17,9 @@ namespace Thalmic
 			Unknown = libmyo_arm_unknown,
 		};
 
-		///<summary>Possible directions for Myo's +x axis relative to a user's arm.</summary>
+		///<summary>
+		/// Possible directions for Myo's +x axis relative to a user's arm.
+		///</summary>
 		public enum class XDirection
 		{
 			TowardWrist = libmyo_x_direction_toward_wrist,

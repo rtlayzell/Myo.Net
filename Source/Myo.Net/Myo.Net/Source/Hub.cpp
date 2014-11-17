@@ -13,11 +13,11 @@ namespace Thalmic
 	{
 		FirmwareVersion _ConstructFirmwareVersion(libmyo_event_t ev)
 		{
-			FirmwareVersion version = { 
+			FirmwareVersion version = FirmwareVersion(
 				libmyo_event_get_firmware_version(ev, libmyo_version_major), 
 				libmyo_event_get_firmware_version(ev, libmyo_version_minor), 
 				libmyo_event_get_firmware_version(ev, libmyo_version_patch), 
-				libmyo_event_get_firmware_version(ev, libmyo_version_hardware_rev), };
+				libmyo_event_get_firmware_version(ev, libmyo_version_hardware_rev));
 
 			return version;
 		}
@@ -204,8 +204,14 @@ namespace Thalmic
 			return _hub->Myos[_hub->Myos->Count - 1];
 		}
 
+		IMyo^ Hub::WaitForMyo( )
+		{
+			return wait_for_myo_impl(this, 0);
+		}
+
 		IMyo^ Hub::WaitForMyo(TimeSpan timeout)
 		{
+			if ((unsigned int)timeout.TotalMilliseconds == 0) return nullptr; // throw here instead.
 			return wait_for_myo_impl(this, (unsigned int)timeout.TotalMilliseconds);
 		}
 
@@ -213,13 +219,25 @@ namespace Thalmic
 			throw gcnew NotImplementedException( );
 		}
 
+		void Hub::Run( )
+		{
+			run_impl(this, 0);
+		}
+
+		void Hub::RunOnce( )
+		{
+			run_once_impl(this, 0);
+		}
+
 		void Hub::Run(TimeSpan duration)
 		{
+			if ((unsigned int)duration.TotalMilliseconds == 0) return; // throw here instead.
 			run_impl(this, (unsigned int)duration.TotalMilliseconds);
 		}
 
 		void Hub::RunOnce(TimeSpan duration)
 		{
+			if ((unsigned int)duration.TotalMilliseconds == 0) return; // throw here instead.
 			run_once_impl(this, (unsigned int)duration.TotalMilliseconds);
 		}
 

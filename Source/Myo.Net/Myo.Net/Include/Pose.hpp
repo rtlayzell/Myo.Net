@@ -7,6 +7,9 @@ namespace Thalmic
 {
 	namespace Myo
 	{
+		///<summary>
+		/// Types of poses supported by the SDK. 
+		///</summary>
 		public enum class Pose
 		{
 			Rest = libmyo_pose_rest,

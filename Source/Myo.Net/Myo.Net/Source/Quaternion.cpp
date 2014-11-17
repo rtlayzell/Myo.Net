@@ -7,7 +7,26 @@ namespace Thalmic
 	namespace Myo
 	{
 		Quaternion::Quaternion(double x, double y, double z, double w)
-			: X(x), Y(y), Z(z), W(w) { }
+			: _x(x), _y(y), _z(z), _w(w) { }
+
+
+		Quaternion Quaternion::operator + (Quaternion lhs, Quaternion rhs)
+		{
+			return Quaternion(
+				lhs.X + rhs.X,
+				lhs.Y + rhs.Y,
+				lhs.Z + rhs.Z,
+				lhs.W + rhs.W);
+		}
+
+		Quaternion Quaternion::operator - (Quaternion lhs, Quaternion rhs)
+		{
+			return Quaternion(
+				lhs.X - rhs.X,
+				lhs.Y - rhs.Y,
+				lhs.Z - rhs.Z,
+				lhs.W - rhs.W);
+		}
 
 		Quaternion Quaternion::operator * (Quaternion lhs, Quaternion rhs)
 		{
@@ -18,19 +37,39 @@ namespace Thalmic
 				lhs.W * rhs.W - lhs.X * rhs.X - lhs.Y * rhs.Y - lhs.Z * rhs.Z);
 		}
 
-		/*Quaternion Quaternion::Inverse( )
-		{
-		}*/
-
-		Quaternion Quaternion::Conjugate( )
+		Quaternion Quaternion::Inverse( )
 		{
 			return Quaternion(-X, -Y, -Z, W);
 		}
 
 		Quaternion Quaternion::Normalized( )
 		{
-			double length = this->Length;
-			return Quaternion(X / length, Y / length, Z / length, W / length);
+			double length = this->Length( );
+			return Quaternion(
+				X / length, 
+				Y / length, 
+				Z / length, 
+				W / length);
 		};
+
+		double Quaternion::Roll(Quaternion quat) 
+		{ 
+			return Math::Atan2(
+				2.0 * (quat.W * quat.X + quat.Y * quat.Z), 
+				1.0 - 2.0 * (quat.X * quat.X + quat.Y * quat.Y)); 
+		}
+
+		double Quaternion::Pitch(Quaternion quat) 
+		{
+			return Math::Asin(
+				Math::Max(-1.0, Math::Min(1.0, 2.0 * (quat.W * quat.Y - quat.Z * quat.X)))); 
+		}
+
+		double Quaternion::Yaw(Quaternion quat)
+		{ 
+			return Math::Atan2(
+				2.0 * (quat.W * quat.Z + quat.X * quat.Y),
+				1.0 - 2.0 * (quat.Y * quat.Y + quat.Z * quat.Z)); 
+		}
 	}
 }

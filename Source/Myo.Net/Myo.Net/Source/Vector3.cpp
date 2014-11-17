@@ -54,9 +54,9 @@ namespace Thalmic
 				lhs.Z / value);
 		}
 
-		void Vector3::Normalize( )
+		Vector3 Vector3::Normalized( )
 		{
-			*this /= this->Length;
+			return *this / this->Length( );
 		}
 
 		double Vector3::Dot(Vector3 rhs)
@@ -76,7 +76,7 @@ namespace Thalmic
 
 		double Vector3::AngleTo(Vector3 rhs)
 		{
-			return System::Math::Acos(Dot(rhs) / (Length * rhs.Length));
+			return System::Math::Acos(Dot(rhs) / (Length( ) * rhs.Length( )));
 		}
 	}
 }

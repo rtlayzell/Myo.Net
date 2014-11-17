@@ -18,6 +18,7 @@ namespace HelloMyo
 		private static Pose currentPose;
 		private static Arm whichArm;
 
+
 		static void Main(string[] args)
 		{
 			try
@@ -26,7 +27,7 @@ namespace HelloMyo
 				{
 					Console.WriteLine("Attempting to find a Myo...");
 					IMyo myo = hub.WaitForMyo(TimeSpan.FromSeconds(10));
-
+					
 					if (myo == null)
 						throw new TimeoutException("Unable to find a Myo!");
 
@@ -38,7 +39,7 @@ namespace HelloMyo
 
 					myo.Pose += OnPose;
 					myo.OrientationDataAcquired += OnOrientationData;
-
+					
 					while (true)
 					{
 						hub.Run(TimeSpan.FromMilliseconds(1000 / 20));
@@ -88,14 +89,10 @@ namespace HelloMyo
 
 		static void OnOrientationData(object sender, OrientationDataEventArgs e)
 		{
-			var quat = e.Orientation;
-
 			// Calculate Euler angles (roll, pitch, and yaw) from the unit quaternion.        
-			double roll = Math.Atan2(2.0 * (quat.W * quat.X + quat.Y * quat.Z),
-				1.0 - 2.0 * (quat.X * quat.X + quat.Y * quat.Y));
-			double pitch = Math.Asin(Math.Max(-1.0, Math.Min(1.0, 2.0 * (quat.W * quat.Y - quat.Z * quat.X))));
-			double yaw = Math.Atan2(2.0 * (quat.W * quat.Z + quat.X * quat.Y),
-				1.0 - 2.0 * (quat.Y * quat.Y + quat.Z * quat.Z));
+			double roll = Quaternion.Roll(e.Orientation);
+			double pitch = Quaternion.Pitch(e.Orientation);
+			double yaw = Quaternion.Yaw(e.Orientation);
 
 			// Convert the floating point angles in radians to a scale from 0 to 18.
 			roll_w = (int)((roll + (double)Math.PI) / (Math.PI * 2.0) * 18);
