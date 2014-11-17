@@ -1,0 +1,11 @@
+D:\Projects\Myo.Net\Samples\HelloMyo\obj\Debug\HelloMyo.csprojResolveAssemblyReference.cache
+D:\Projects\Myo.Net\Samples\HelloMyo\bin\Debug\HelloMyo.exe.config
+D:\Projects\Myo.Net\Samples\HelloMyo\bin\Debug\HelloMyo.exe
+D:\Projects\Myo.Net\Samples\HelloMyo\bin\Debug\HelloMyo.pdb
+D:\Projects\Myo.Net\Samples\HelloMyo\bin\Debug\Myo.Net.dll
+D:\Projects\Myo.Net\Samples\HelloMyo\bin\Debug\Myo.Net.pdb
+D:\Projects\Myo.Net\Samples\HelloMyo\obj\Debug\HelloMyo.exe
+D:\Projects\Myo.Net\Samples\HelloMyo\obj\Debug\HelloMyo.pdb
+D:\Projects\Myo.Net\Build\Debug\HelloMyo.exe.config
+D:\Projects\Myo.Net\Build\Debug\HelloMyo.exe
+D:\Projects\Myo.Net\Build\Debug\HelloMyo.pdb

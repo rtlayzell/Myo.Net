@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{74C77080-4BEA-441A-94B2-ECF92188945F}</ProjectGuid>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Keyword>ManagedCProj</Keyword>
+    <RootNamespace>MyoNet</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\..\Build\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\..\Build\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>Include\;D:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>myo32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Libraries\</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>COPY "$(MyoLib)myo32.dll" "$(OutDir)"
+COPY "$(MyoLib)myo64.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>Include\;D:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>myo32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Libraries\</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>COPY "$(MyoLib)myo32.dll" "$(OutDir)"
+COPY "$(MyoLib)myo64.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\AccelerometerDataEventArgs.cpp" />
+    <ClCompile Include="Source\Arm.cpp" />
+    <ClCompile Include="Source\AssemblyInfo.cpp" />
+    <ClCompile Include="Source\GyroscopeDataEventArgs.cpp" />
+    <ClCompile Include="Source\Hub.cpp" />
+    <ClCompile Include="Source\Myo.cpp" />
+    <ClCompile Include="Source\MyoEventArgs.cpp" />
+    <ClCompile Include="Source\OrientationDataEventArgs.cpp" />
+    <ClCompile Include="Source\Pose.cpp" />
+    <ClCompile Include="Source\PoseEventArgs.cpp" />
+    <ClCompile Include="Source\Quaternion.cpp" />
+    <ClCompile Include="Source\RecognizedArmEventArgs.cpp" />
+    <ClCompile Include="Source\RssiDataEventArgs.cpp" />
+    <ClCompile Include="Source\Stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Source\ThrowOnError.cpp" />
+    <ClCompile Include="Source\Vector3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\AccelerometerDataEventArgs.hpp" />
+    <ClInclude Include="Include\Arm.hpp" />
+    <ClInclude Include="Include\GyroscopeDataEventArgs.hpp" />
+    <ClInclude Include="Include\Hub.hpp" />
+    <ClInclude Include="Include\Myo.hpp" />
+    <ClInclude Include="Include\MyoEventArgs.hpp" />
+    <ClInclude Include="Include\OrientationDataEventArgs.hpp" />
+    <ClInclude Include="Include\Pose.hpp" />
+    <ClInclude Include="Include\PoseEventArgs.hpp" />
+    <ClInclude Include="Include\Quaternion.hpp" />
+    <ClInclude Include="Include\RecognizedArmEventArgs.hpp" />
+    <ClInclude Include="Include\RssiDataEventArgs.hpp" />
+    <ClInclude Include="Include\Stdafx.h" />
+    <ClInclude Include="Include\ThrowOnError.hpp" />
+    <ClInclude Include="Include\Vector3.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

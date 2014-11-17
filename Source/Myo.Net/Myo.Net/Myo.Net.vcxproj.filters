@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Myo">
+      <UniqueIdentifier>{291b43b6-e650-4cad-917c-9e7361255d6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Myo\Device">
+      <UniqueIdentifier>{a40bd0b7-4d58-44c5-8ecc-4245ca228ffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Myo\Event">
+      <UniqueIdentifier>{8ac17ee2-20af-416a-8afd-38cf9b22a4dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Myo">
+      <UniqueIdentifier>{9233ad46-4158-4558-9b46-2b7756fbce1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Myo\Device">
+      <UniqueIdentifier>{5296f703-21cd-49be-a76e-0c597ccebecb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Myo\Event">
+      <UniqueIdentifier>{2128fb18-7781-4960-b001-9879b4500aa1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\AssemblyInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Hub.cpp">
+      <Filter>Source Files\Myo\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Myo.cpp">
+      <Filter>Source Files\Myo\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AccelerometerDataEventArgs.cpp">
+      <Filter>Source Files\Myo\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GyroscopeDataEventArgs.cpp">
+      <Filter>Source Files\Myo\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MyoEventArgs.cpp">
+      <Filter>Source Files\Myo\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\OrientationDataEventArgs.cpp">
+      <Filter>Source Files\Myo\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PoseEventArgs.cpp">
+      <Filter>Source Files\Myo\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RecognizedArmEventArgs.cpp">
+      <Filter>Source Files\Myo\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RssiDataEventArgs.cpp">
+      <Filter>Source Files\Myo\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Arm.cpp">
+      <Filter>Source Files\Myo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Pose.cpp">
+      <Filter>Source Files\Myo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Quaternion.cpp">
+      <Filter>Source Files\Myo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThrowOnError.cpp">
+      <Filter>Source Files\Myo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Vector3.cpp">
+      <Filter>Source Files\Myo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\Stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Arm.hpp">
+      <Filter>Header Files\Myo</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Pose.hpp">
+      <Filter>Header Files\Myo</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Quaternion.hpp">
+      <Filter>Header Files\Myo</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ThrowOnError.hpp">
+      <Filter>Header Files\Myo</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Vector3.hpp">
+      <Filter>Header Files\Myo</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\AccelerometerDataEventArgs.hpp">
+      <Filter>Header Files\Myo\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GyroscopeDataEventArgs.hpp">
+      <Filter>Header Files\Myo\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\OrientationDataEventArgs.hpp">
+      <Filter>Header Files\Myo\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MyoEventArgs.hpp">
+      <Filter>Header Files\Myo\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\PoseEventArgs.hpp">
+      <Filter>Header Files\Myo\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\RecognizedArmEventArgs.hpp">
+      <Filter>Header Files\Myo\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\RssiDataEventArgs.hpp">
+      <Filter>Header Files\Myo\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Hub.hpp">
+      <Filter>Header Files\Myo\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Myo.hpp">
+      <Filter>Header Files\Myo\Device</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

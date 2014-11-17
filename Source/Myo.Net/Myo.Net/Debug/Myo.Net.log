@@ -1,0 +1,54 @@
+﻿Build started 17/11/2014 14:59:41.
+     1>Project "D:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Myo.Net.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IInclude\ /ID:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Include /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\Myo.Net.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib Source\Stdafx.cpp
+         Stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IInclude\ /ID:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Include /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\Myo.Net.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib Source\AccelerometerDataEventArgs.cpp Source\Arm.cpp Source\AssemblyInfo.cpp Source\GyroscopeDataEventArgs.cpp Source\Hub.cpp Source\Myo.cpp Source\MyoEventArgs.cpp Source\OrientationDataEventArgs.cpp Source\Pose.cpp Source\PoseEventArgs.cpp Source\Quaternion.cpp Source\RecognizedArmEventArgs.cpp Source\RssiDataEventArgs.cpp Source\ThrowOnError.cpp Source\Vector3.cpp
+         AccelerometerDataEventArgs.cpp
+         Arm.cpp
+         AssemblyInfo.cpp
+         GyroscopeDataEventArgs.cpp
+         Hub.cpp
+         Myo.cpp
+         MyoEventArgs.cpp
+         OrientationDataEventArgs.cpp
+         Pose.cpp
+         PoseEventArgs.cpp
+         Quaternion.cpp
+         RecognizedArmEventArgs.cpp
+         RssiDataEventArgs.cpp
+         ThrowOnError.cpp
+         Vector3.cpp
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IInclude\ /ID:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Include /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /analyze- /errorReport:prompt "C:\Users\Reegan\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cpp"
+         .NETFramework,Version=v4.5.AssemblyAttributes.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Projects\Myo.Net\Source\Myo.Net\\..\..\Build\Debug\Myo.Net.dll" /INCREMENTAL /NOLOGO /LIBPATH:Libraries\ myo32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Projects\Myo.Net\Source\Myo.Net\\..\..\Build\Debug\Myo.Net.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /DLL Debug\AccelerometerDataEventArgs.obj
+         Debug\Arm.obj
+         Debug\AssemblyInfo.obj
+         Debug\GyroscopeDataEventArgs.obj
+         Debug\Hub.obj
+         Debug\Myo.obj
+         Debug\MyoEventArgs.obj
+         Debug\OrientationDataEventArgs.obj
+         Debug\Pose.obj
+         Debug\PoseEventArgs.obj
+         Debug\Quaternion.obj
+         Debug\RecognizedArmEventArgs.obj
+         Debug\RssiDataEventArgs.obj
+         Debug\Stdafx.obj
+         Debug\ThrowOnError.obj
+         Debug\Vector3.obj
+         "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
+         Myo.Net.vcxproj -> D:\Projects\Myo.Net\Source\Myo.Net\\..\..\Build\Debug\Myo.Net.dll
+       PostBuildEvent:
+         COPY "D:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Bin\myo32.dll" "D:\Projects\Myo.Net\Source\Myo.Net\\..\..\Build\Debug\"
+         COPY "D:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Bin\myo64.dll" "D:\Projects\Myo.Net\Source\Myo.Net\\..\..\Build\Debug\"
+         :VCEnd
+                 1 file(s) copied.
+                 1 file(s) copied.
+     1>Done Building Project "D:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Myo.Net.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:08.32
