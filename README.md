@@ -1,4 +1,4 @@
-Myo.Net
+Myo.NET
 =======
 
 Myo.NET is a C++/CLI port of the *Thalmic Labs Myo&trade;* SDK.
