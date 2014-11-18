@@ -45,9 +45,9 @@ Struct Thalmic.Myo.Vector3: AutoLayout, AnsiClass, Class, Public, ExplicitLayout
     op_Multiply(Vector3, Double): PrivateScope, Public, Static, HideBySig, SpecialName
     op_Division(Vector3, Double): PrivateScope, Public, Static, HideBySig, SpecialName
     Normalized(): PrivateScope, Public, HideBySig
-    Dot(Vector3): PrivateScope, Public, HideBySig
-    Cross(Vector3): PrivateScope, Public, HideBySig
-    AngleTo(Vector3): PrivateScope, Public, HideBySig
+    DotProduct(Vector3, Vector3): PrivateScope, Public, Static, HideBySig
+    CrossProduct(Vector3, Vector3): PrivateScope, Public, Static, HideBySig
+    AngleTo(Vector3, Vector3): PrivateScope, Public, Static, HideBySig
 Class Thalmic.Myo.AccelerometerDataEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :Thalmic.Myo.MyoEventArgs
     Void .ctor(Thalmic.Myo.IMyo, System.DateTimeOffset, Thalmic.Myo.Vector3): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

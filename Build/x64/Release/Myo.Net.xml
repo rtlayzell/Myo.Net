@@ -85,6 +85,124 @@ Initializes a new instance of <see cref="T:Thalmic.Myo.Hub" /></summary>
             <summary>A Hub provides access to one or more Myo instances.</summary>
             <summary />
         </member>
+        <member name="M:myo.Myo.#ctor(System.Void*)">
+@endcond
+</member>
+        <member name="M:myo.Myo.libmyoObject">
+@cond MYO_INTERNALS
+Return the internal libmyo object corresponding to this device.
+</member>
+        <member name="M:myo.Myo.requestRssi">
+Request the RSSI of the Myo. An onRssi event will likely be generated with the value of the RSSI.
+@see DeviceListener::onRssi()
+</member>
+        <member name="M:myo.Myo.vibrate(myo.Myo.VibrationType)">
+Vibrate the Myo.
+</member>
+        <member name="T:myo.Myo.VibrationType">
+Types of vibration supported by the Myo.
+</member>
+        <member name="T:myo.Myo">
+Represents a Myo device with a specific MAC address.
+This class can not be instantiated directly; instead, use Hub to get access to a Myo.
+There is only one Myo instance corresponding to each device; thus, if the addresses of two Myo instances compare
+equal, they refer to the same device.
+</member>
+        <member name="M:myo.Hub.#ctor(myo.Hub!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+@endcond
+</member>
+        <member name="M:myo.Hub.libmyoObject">
+@cond MYO_INTERNALS
+Return the internal libmyo object corresponding to this hub.
+</member>
+        <member name="M:myo.Hub.runOnce(System.UInt32)">
+Run the event loop until a single event occurs, or the specified duration (in milliseconds) has elapsed.
+</member>
+        <member name="M:myo.Hub.run(System.UInt32)">
+Run the event loop for the specified duration (in milliseconds).
+</member>
+        <member name="M:myo.Hub.removeListener(myo.DeviceListener*)">
+Remove a previously registered listener.
+</member>
+        <member name="M:myo.Hub.addListener(myo.DeviceListener*)">
+Register a listener to be called when device events occur.
+</member>
+        <member name="M:myo.Hub.waitForMyo(System.UInt32)">
+Wait for a Myo to become paired, or time out after \a timeout_ms milliseconds if provided.
+If \a timeout_ms is zero, this function blocks until a Myo is found.
+This function must not be called concurrently with run() or runOnce().
+</member>
+        <member name="M:myo.Hub.Dispose">
+Deallocate any resources associated with a Hub.
+This will cause all Myo instances retrieved from this Hub to become invalid.
+</member>
+        <member name="M:myo.Hub.#ctor(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Construct a hub.
+\a applicationIdentifier must follow a reverse domain name format (ex. com.domainname.appname). Application
+identifiers can be formed from the set of alphanumeric ASCII characters (a-z, A-Z, 0-9). The hyphen (-) and
+underscore (_) characters are permitted if they are not adjacent to a period (.) character  (i.e. not at the
+start or end of each segment), but are not permitted in the top-level domain. Application identifiers must have
+three or more segments. For example, if a company's domain is example.com and the application is named
+hello-world, one could use "com.example.hello-world" as a valid application identifier. \a applicationIdentifier
+can be an empty string.
+Throws an exception of type std::invalid_argument if \a applicationIdentifier is not in the proper reverse
+domain name format or is longer than 255 characters.
+Throws an exception of type std::runtime_error if the hub initialization failed for some reason, typically
+because Myo Connect is not running and a connection can thus not be established.
+</member>
+        <member name="T:myo.Hub">
+@brief A Hub provides access to one or more Myo instances.
+</member>
+        <member name="M:myo.DeviceListener.onOpaqueEvent(System.Void!System.Runtime.CompilerServices.IsConst*)">
+@cond LIBMYO_INTERNALS
+</member>
+        <member name="M:myo.DeviceListener.onRssi(myo.Myo*,System.UInt64,System.SByte)">
+Called when a paired Myo has provided a new RSSI value.
+@see Myo::requestRssi() to request an RSSI value from the Myo.
+</member>
+        <member name="M:myo.DeviceListener.onGyroscopeData(myo.Myo*,System.UInt64,myo.Vector3&lt;System.Single&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Called when a paired Myo has provided new gyroscope data in units of deg/s.
+</member>
+        <member name="M:myo.DeviceListener.onAccelerometerData(myo.Myo*,System.UInt64,myo.Vector3&lt;System.Single&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Called when a paired Myo has provided new accelerometer data in units of g.
+</member>
+        <member name="M:myo.DeviceListener.onOrientationData(myo.Myo*,System.UInt64,myo.Quaternion&lt;System.Single&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Called when a paired Myo has provided new orientation data.
+</member>
+        <member name="M:myo.DeviceListener.onPose(myo.Myo*,System.UInt64,myo.Pose)">
+Called when a paired Myo has provided a new pose.
+</member>
+        <member name="M:myo.DeviceListener.onArmUnsync(myo.Myo*,System.UInt64)">
+Called when a paired Myo is moved or removed from the arm.
+</member>
+        <member name="M:myo.DeviceListener.onArmSync(myo.Myo*,System.UInt64,myo.Arm,myo.XDirection)">
+Called when a paired Myo recognizes that it is on an arm.
+</member>
+        <member name="M:myo.DeviceListener.onDisconnect(myo.Myo*,System.UInt64)">
+Called when a paired Myo has been disconnected.
+</member>
+        <member name="M:myo.DeviceListener.onConnect(myo.Myo*,System.UInt64,myo.FirmwareVersion)">
+Called when a paired Myo has been connected.
+</member>
+        <member name="M:myo.DeviceListener.onUnpair(myo.Myo*,System.UInt64)">
+Called when a Myo has been unpaired.
+</member>
+        <member name="M:myo.DeviceListener.onPair(myo.Myo*,System.UInt64,myo.FirmwareVersion)">
+Called when a Myo has been paired.
+</member>
+        <member name="T:myo.DeviceListener">
+A DeviceListener receives events about a Myo.
+@see Hub::addListener()
+</member>
+        <member name="T:myo.FirmwareVersion">
+Firmware version of Myo.
+</member>
+        <member name="T:myo.XDirection">
+Possible directions for Myo's +x axis relative to a user's arm.
+</member>
+        <member name="T:myo.Arm">
+Enumeration identifying a right arm or left arm.
+</member>
         <member name="M:Thalmic.Myo.Myo.RequestRssi">
             <summary>
 Request the RSSI of the Myo.
@@ -241,9 +359,14 @@ Structure representing the firmware version of Myo.
 Types of vibration supported by the Myo. 
 </summary>
         </member>
-        <member name="T:Thalmic.Myo.Pose">
+        <member name="T:Thalmic.Myo.XDirection">
             <summary>
-Types of poses supported by the SDK. 
+Possible directions for Myo's +x axis relative to a user's arm.
+</summary>
+        </member>
+        <member name="T:Thalmic.Myo.Arm">
+            <summary>
+Enumeration identifying a right arm or left arm.
 </summary>
         </member>
         <member name="M:Thalmic.Myo.Quaternion.Normalized">
@@ -354,139 +477,70 @@ Represents a quaternion that has X, Y, Z and W values set to zero.
 Structure that represents a rotation in three dimensions.
 </summary>
         </member>
-        <member name="M:myo.Myo.#ctor(System.Void*)">
-@endcond
-</member>
-        <member name="M:myo.Myo.libmyoObject">
-@cond MYO_INTERNALS
-Return the internal libmyo object corresponding to this device.
-</member>
-        <member name="M:myo.Myo.requestRssi">
-Request the RSSI of the Myo. An onRssi event will likely be generated with the value of the RSSI.
-@see DeviceListener::onRssi()
-</member>
-        <member name="M:myo.Myo.vibrate(myo.Myo.VibrationType)">
-Vibrate the Myo.
-</member>
-        <member name="T:myo.Myo.VibrationType">
-Types of vibration supported by the Myo.
-</member>
-        <member name="T:myo.Myo">
-Represents a Myo device with a specific MAC address.
-This class can not be instantiated directly; instead, use Hub to get access to a Myo.
-There is only one Myo instance corresponding to each device; thus, if the addresses of two Myo instances compare
-equal, they refer to the same device.
-</member>
-        <member name="M:myo.Hub.#ctor(myo.Hub!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-@endcond
-</member>
-        <member name="M:myo.Hub.libmyoObject">
-@cond MYO_INTERNALS
-Return the internal libmyo object corresponding to this hub.
-</member>
-        <member name="M:myo.Hub.runOnce(System.UInt32)">
-Run the event loop until a single event occurs, or the specified duration (in milliseconds) has elapsed.
-</member>
-        <member name="M:myo.Hub.run(System.UInt32)">
-Run the event loop for the specified duration (in milliseconds).
-</member>
-        <member name="M:myo.Hub.removeListener(myo.DeviceListener*)">
-Remove a previously registered listener.
-</member>
-        <member name="M:myo.Hub.addListener(myo.DeviceListener*)">
-Register a listener to be called when device events occur.
-</member>
-        <member name="M:myo.Hub.waitForMyo(System.UInt32)">
-Wait for a Myo to become paired, or time out after \a timeout_ms milliseconds if provided.
-If \a timeout_ms is zero, this function blocks until a Myo is found.
-This function must not be called concurrently with run() or runOnce().
-</member>
-        <member name="M:myo.Hub.Dispose">
-Deallocate any resources associated with a Hub.
-This will cause all Myo instances retrieved from this Hub to become invalid.
-</member>
-        <member name="M:myo.Hub.#ctor(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-Construct a hub.
-\a applicationIdentifier must follow a reverse domain name format (ex. com.domainname.appname). Application
-identifiers can be formed from the set of alphanumeric ASCII characters (a-z, A-Z, 0-9). The hyphen (-) and
-underscore (_) characters are permitted if they are not adjacent to a period (.) character  (i.e. not at the
-start or end of each segment), but are not permitted in the top-level domain. Application identifiers must have
-three or more segments. For example, if a company's domain is example.com and the application is named
-hello-world, one could use "com.example.hello-world" as a valid application identifier. \a applicationIdentifier
-can be an empty string.
-Throws an exception of type std::invalid_argument if \a applicationIdentifier is not in the proper reverse
-domain name format or is longer than 255 characters.
-Throws an exception of type std::runtime_error if the hub initialization failed for some reason, typically
-because Myo Connect is not running and a connection can thus not be established.
-</member>
-        <member name="T:myo.Hub">
-@brief A Hub provides access to one or more Myo instances.
-</member>
-        <member name="M:myo.DeviceListener.onOpaqueEvent(System.Void!System.Runtime.CompilerServices.IsConst*)">
-@cond LIBMYO_INTERNALS
-</member>
-        <member name="M:myo.DeviceListener.onRssi(myo.Myo*,System.UInt64,System.SByte)">
-Called when a paired Myo has provided a new RSSI value.
-@see Myo::requestRssi() to request an RSSI value from the Myo.
-</member>
-        <member name="M:myo.DeviceListener.onGyroscopeData(myo.Myo*,System.UInt64,myo.Vector3&lt;System.Single&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-Called when a paired Myo has provided new gyroscope data in units of deg/s.
-</member>
-        <member name="M:myo.DeviceListener.onAccelerometerData(myo.Myo*,System.UInt64,myo.Vector3&lt;System.Single&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-Called when a paired Myo has provided new accelerometer data in units of g.
-</member>
-        <member name="M:myo.DeviceListener.onOrientationData(myo.Myo*,System.UInt64,myo.Quaternion&lt;System.Single&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-Called when a paired Myo has provided new orientation data.
-</member>
-        <member name="M:myo.DeviceListener.onPose(myo.Myo*,System.UInt64,myo.Pose)">
-Called when a paired Myo has provided a new pose.
-</member>
-        <member name="M:myo.DeviceListener.onArmUnsync(myo.Myo*,System.UInt64)">
-Called when a paired Myo is moved or removed from the arm.
-</member>
-        <member name="M:myo.DeviceListener.onArmSync(myo.Myo*,System.UInt64,myo.Arm,myo.XDirection)">
-Called when a paired Myo recognizes that it is on an arm.
-</member>
-        <member name="M:myo.DeviceListener.onDisconnect(myo.Myo*,System.UInt64)">
-Called when a paired Myo has been disconnected.
-</member>
-        <member name="M:myo.DeviceListener.onConnect(myo.Myo*,System.UInt64,myo.FirmwareVersion)">
-Called when a paired Myo has been connected.
-</member>
-        <member name="M:myo.DeviceListener.onUnpair(myo.Myo*,System.UInt64)">
-Called when a Myo has been unpaired.
-</member>
-        <member name="M:myo.DeviceListener.onPair(myo.Myo*,System.UInt64,myo.FirmwareVersion)">
-Called when a Myo has been paired.
-</member>
-        <member name="T:myo.DeviceListener">
-A DeviceListener receives events about a Myo.
-@see Hub::addListener()
-</member>
-        <member name="T:myo.FirmwareVersion">
-Firmware version of Myo.
-</member>
-        <member name="T:myo.XDirection">
-Possible directions for Myo's +x axis relative to a user's arm.
-</member>
-        <member name="T:myo.Arm">
-Enumeration identifying a right arm or left arm.
-</member>
-        <member name="M:Thalmic.Myo.Vector3.AngleTo(Thalmic.Myo.Vector3)">
+        <member name="T:Thalmic.Myo.Pose">
             <summary>
-Calculates the angle between this <see cref="T:Thalmic.Myo.Vector3" /> and <paramref name="rhs" />.
+Types of poses supported by the SDK. 
+</summary>
+        </member>
+        <member name="M:myo.op_LeftShift(std.basic_ostream&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte}&gt;*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,myo.Pose!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+@relates Pose
+Write the name of the provided pose to the provided output stream.
+</member>
+        <member name="M:myo.op_Inequality(myo.Pose.Type,myo.Pose)">
+@relates Pose
+Equivalent to `!(type == pose)`.
+</member>
+        <member name="M:myo.op_Inequality(myo.Pose,myo.Pose.Type)">
+@relates Pose
+Equivalent to `!(pose == type)`.
+</member>
+        <member name="M:myo.op_Equality(myo.Pose.Type,myo.Pose)">
+@relates Pose
+Equivalent to `pose == type`.
+</member>
+        <member name="M:myo.op_Equality(myo.Pose,myo.Pose.Type)">
+@relates Pose
+Returns true if and only if the type of pose is the same as the provided type.
+</member>
+        <member name="M:myo.Pose.toString">
+Return a human-readable string representation of the pose.
+</member>
+        <member name="M:myo.Pose.type">
+Returns the type of this pose.
+</member>
+        <member name="M:myo.Pose.op_Inequality(myo.Pose)">
+Equivalent to `!(*this == other)`.
+</member>
+        <member name="M:myo.Pose.op_Equality(myo.Pose)">
+Returns true if and only if the two poses are of the same type.
+</member>
+        <member name="M:myo.Pose.#ctor(myo.Pose.Type)">
+Construct a pose with the given type.
+</member>
+        <member name="M:myo.Pose.#ctor">
+Construct a pose of type Pose::none.
+</member>
+        <member name="T:myo.Pose.Type">
+Types of poses supported by the SDK.
+</member>
+        <member name="T:myo.Pose">
+A pose represents a detected configuration of the user's hand.
+</member>
+        <member name="M:Thalmic.Myo.Vector3.AngleTo(Thalmic.Myo.Vector3,Thalmic.Myo.Vector3)">
+            <summary>
+Calculates the angle between the <see cref="T:Thalmic.Myo.Vector3" />'s <paramref name="lhs" /> and <paramref name="rhs" />.
 </summary>
             <returns>The angle in radians.</returns>
         </member>
-        <member name="M:Thalmic.Myo.Vector3.Cross(Thalmic.Myo.Vector3)">
+        <member name="M:Thalmic.Myo.Vector3.CrossProduct(Thalmic.Myo.Vector3,Thalmic.Myo.Vector3)">
             <summary>
-Calculates the cross product of this <see cref="T:Thalmic.Myo.Vector3" /> and <paramref name="rhs" />.
+Calculates the cross product of the <see cref="T:Thalmic.Myo.Vector3" />'s <paramref name="lhs" /> and <paramref name="rhs" />.
 </summary>
             <returns>A new vector representing the cross product.</returns>
         </member>
-        <member name="M:Thalmic.Myo.Vector3.Dot(Thalmic.Myo.Vector3)">
+        <member name="M:Thalmic.Myo.Vector3.DotProduct(Thalmic.Myo.Vector3,Thalmic.Myo.Vector3)">
             <summary>
-Calculates the dot product of this <see cref="T:Thalmic.Myo.Vector3" /> and <paramref name="rhs" />.
+Calculates the dot product of the <see cref="T:Thalmic.Myo.Vector3" />'s <paramref name="lhs" /> and <paramref name="rhs" />.
 </summary>
             <returns>The dot product.</returns>
         </member>
@@ -568,60 +622,6 @@ Represents a 3-dimension vector that has X, Y, and Z values set to zero.
 A vector of three components.
 </summary>
         </member>
-        <member name="T:Thalmic.Myo.XDirection">
-            <summary>
-Possible directions for Myo's +x axis relative to a user's arm.
-</summary>
-        </member>
-        <member name="T:Thalmic.Myo.Arm">
-            <summary>
-Enumeration identifying a right arm or left arm.
-</summary>
-        </member>
-        <member name="M:myo.op_LeftShift(std.basic_ostream&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte}&gt;*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,myo.Pose!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-@relates Pose
-Write the name of the provided pose to the provided output stream.
-</member>
-        <member name="M:myo.op_Inequality(myo.Pose.Type,myo.Pose)">
-@relates Pose
-Equivalent to `!(type == pose)`.
-</member>
-        <member name="M:myo.op_Inequality(myo.Pose,myo.Pose.Type)">
-@relates Pose
-Equivalent to `!(pose == type)`.
-</member>
-        <member name="M:myo.op_Equality(myo.Pose.Type,myo.Pose)">
-@relates Pose
-Equivalent to `pose == type`.
-</member>
-        <member name="M:myo.op_Equality(myo.Pose,myo.Pose.Type)">
-@relates Pose
-Returns true if and only if the type of pose is the same as the provided type.
-</member>
-        <member name="M:myo.Pose.toString">
-Return a human-readable string representation of the pose.
-</member>
-        <member name="M:myo.Pose.type">
-Returns the type of this pose.
-</member>
-        <member name="M:myo.Pose.op_Inequality(myo.Pose)">
-Equivalent to `!(*this == other)`.
-</member>
-        <member name="M:myo.Pose.op_Equality(myo.Pose)">
-Returns true if and only if the two poses are of the same type.
-</member>
-        <member name="M:myo.Pose.#ctor(myo.Pose.Type)">
-Construct a pose with the given type.
-</member>
-        <member name="M:myo.Pose.#ctor">
-Construct a pose of type Pose::none.
-</member>
-        <member name="T:myo.Pose.Type">
-Types of poses supported by the SDK.
-</member>
-        <member name="T:myo.Pose">
-A pose represents a detected configuration of the user's hand.
-</member>
         <member name="P:Thalmic.Myo.MyoEventArgs.TimeStamp">
             <summary>
 Gets the time stamp at which the event occurred.
@@ -630,6 +630,11 @@ Gets the time stamp at which the event occurred.
         <member name="P:Thalmic.Myo.MyoEventArgs.Myo">
             <summary>
 Gets the <see cref="T:Thalmic.Myo.IMyo" /> associated with the event.
+</summary>
+        </member>
+        <member name="M:Thalmic.Myo.MyoEventArgs.#ctor(Thalmic.Myo.IMyo,System.DateTimeOffset)">
+            <summary>
+Initializes a new instance of <see cref="T:Thalmic.Myo.MyoEventArgs" />.
 </summary>
         </member>
     </members>
