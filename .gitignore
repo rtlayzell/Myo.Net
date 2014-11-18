@@ -15,11 +15,34 @@ $RECYCLE.BIN/
 *.msp
 
 # Visual Studio Files
+*.[Oo]bj
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
 *.sdf
 *.opensdf
-*.suo
-*.vcxproj.user
-ipch
+
+ipch/
+obj/
+
+[Bb]uild
+[Dd]ebug*/
+[Rr]elease*/
+
 
 # =========================
 # Operating System Files
