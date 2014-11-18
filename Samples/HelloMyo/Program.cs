@@ -27,7 +27,6 @@ namespace HelloMyo
 				{
 					Console.WriteLine("Attempting to find a Myo...");
 					IMyo myo = hub.WaitForMyo(TimeSpan.FromSeconds(10));
-					
 					if (myo == null)
 						throw new TimeoutException("Unable to find a Myo!");
 
@@ -39,7 +38,7 @@ namespace HelloMyo
 
 					myo.Pose += OnPose;
 					myo.OrientationDataAcquired += OnOrientationData;
-					
+
 					while (true)
 					{
 						hub.Run(TimeSpan.FromMilliseconds(1000 / 20));
@@ -68,7 +67,7 @@ namespace HelloMyo
 			{
 				Console.Write("[{0}][{1}]", 
 					whichArm.ToString()[0], 
-					currentPose.ToString().PadRight(14));
+					currentPose.ToString().PadRight(13));
 			}
 			else
 			{
