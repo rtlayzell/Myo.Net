@@ -14,12 +14,6 @@ Because it is writtin in managed C++/CLI, Myo.NET can be used directly with .NET
 - [Myo Connect for Windows v0.6.0](https://developer.thalmic.com/downloads)
 - [Myo Firmware v1.0.3](https://developer.thalmic.com/downloads)
 
-## Build
-
-1. [Download]()
-2. Open the Myo.Net solution file.
-3. 
-
 ## Installation
 
 The recommended way to install Myo.NET is via the NuGet Package Manager.
