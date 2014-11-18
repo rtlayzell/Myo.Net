@@ -165,12 +165,14 @@ namespace Thalmic
 			/// Gets the assigned name of the <see cref="Myo"/>.
 			///</summary>
 			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
+			[System::Diagnostics::DebuggerBrowsableAttribute(System::Diagnostics::DebuggerBrowsableState::Never)]
 			virtual property String^ Name { String^ get( ) { throw gcnew NotImplementedException( ); } }
 			
 			///<summary>
 			/// Gets the Mac Address of the <see cref="Myo"/>.
 			///</summary>
 			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
+			[System::Diagnostics::DebuggerBrowsableAttribute(System::Diagnostics::DebuggerBrowsableState::Never)]
 			virtual property String^ MacAddress { String^ get( ) { throw gcnew NotImplementedException( ); } }
 			
 			///<summary>

@@ -59,24 +59,25 @@ namespace Thalmic
 			return *this / this->Length( );
 		}
 
-		double Vector3::Dot(Vector3 rhs)
+		double Vector3::DotProduct(Vector3 lhs, Vector3 rhs)
 		{
-			return X * rhs.X
-				+ Y * rhs.Y
-				+ Z * rhs.Z;
+			return 
+				lhs.X * rhs.X + 
+				lhs.Y * rhs.Y + 
+				lhs.Z * rhs.Z;
 		}
 
-		Vector3 Vector3::Cross(Vector3 rhs)
+		Vector3 Vector3::CrossProduct(Vector3 lhs, Vector3 rhs)
 		{
 			return Vector3(
-				Y * rhs.Z - Z * rhs.Y,
-				Z * rhs.X - X * rhs.Z,
-				X * rhs.Y - Y * rhs.X);
+				lhs.Y * rhs.Z - lhs.Z * rhs.Y,
+				lhs.Z * rhs.X - lhs.X * rhs.Z,
+				lhs.X * rhs.Y - lhs.Y * rhs.X);
 		}
 
-		double Vector3::AngleTo(Vector3 rhs)
+		double Vector3::AngleTo(Vector3 lhs, Vector3 rhs)
 		{
-			return System::Math::Acos(Dot(rhs) / (Length( ) * rhs.Length( )));
+			return System::Math::Acos(DotProduct(lhs, rhs) / (lhs.Length( ) * rhs.Length( )));
 		}
 	}
 }

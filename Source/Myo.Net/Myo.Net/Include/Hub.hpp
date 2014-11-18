@@ -62,6 +62,7 @@ namespace Thalmic
 			/// <param name="timeout">The amount of time to wait until time out occurs.</param>
 			IMyo^ WaitForMyo(TimeSpan timeout);
 
+			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			System::Threading::Tasks::Task<IMyo^>^ WaitForMyoAsync(TimeSpan timeout); // not implemented.
 
 			///<summary>
@@ -85,7 +86,11 @@ namespace Thalmic
 			///</summary>
 			/// <param name="duration">The amount of time to run the event loop.</param>
 			void RunOnce(TimeSpan duration);
+
+			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			System::Threading::Tasks::Task^ RunAsync(TimeSpan duration); // not implemented.
+
+			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			System::Threading::Tasks::Task^ RunOnceAsync(TimeSpan duration); // not implemented.
 
 			///<summary>

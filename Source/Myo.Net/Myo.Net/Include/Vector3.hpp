@@ -62,7 +62,8 @@ namespace Thalmic
 			///<summary>
 			/// Get or set a component in the <see cref="Vector3"/> by index.
 			///</summary>
-			property double default[int] {
+			property double default[int] 
+			{
 				double get(int index) { return *(&_x + index); }
 				void set(int index, double value) { *(&_x + index) = value; }
 			}
@@ -77,7 +78,7 @@ namespace Thalmic
 			/// Gets the length squared of the <see cref="Vector3"/>
 			///</summary>
 			///<returns>The squared length of the <see cref="Vector3"/>.</returns>
-			double LengthSquared( ) { return this->Dot(*this); }
+			double LengthSquared( ) { return DotProduct(*this, *this); }
 
 			///<summary>
 			/// Adds the specified <see cref="Vector3"/>'s.
@@ -111,22 +112,22 @@ namespace Thalmic
 			Vector3 Normalized( );
 
 			///<summary>
-			/// Calculates the dot product of this <see cref="Vector3"/> and <paramref name="rhs"/>.
+			/// Calculates the dot product of the <see cref="Vector3"/>'s <paramref name="lhs"/> and <paramref name="rhs"/>.
 			///</summary>
 			///<returns>The dot product.</returns>
-			double Dot(Vector3 rhs);
+			static double DotProduct(Vector3 lhs, Vector3 rhs);
 
 			///<summary>
-			/// Calculates the cross product of this <see cref="Vector3"/> and <paramref name="rhs"/>.
+			/// Calculates the cross product of the <see cref="Vector3"/>'s <paramref name="lhs"/> and <paramref name="rhs"/>.
 			///</summary>
 			///<returns>A new vector representing the cross product.</returns>
-			Vector3 Cross(Vector3 rhs);
+			static Vector3 CrossProduct(Vector3 lhs, Vector3 rhs);
 
 			///<summary>
-			/// Calculates the angle between this <see cref="Vector3"/> and <paramref name="rhs"/>.
+			/// Calculates the angle between the <see cref="Vector3"/>'s <paramref name="lhs"/> and <paramref name="rhs"/>.
 			///</summary>
 			///<returns>The angle in radians.</returns>
-			double AngleTo(Vector3 rhs);
+			static double AngleTo(Vector3 lhs, Vector3 rhs);
 		};
 	}
 }
