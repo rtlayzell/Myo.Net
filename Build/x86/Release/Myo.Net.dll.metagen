@@ -1,0 +1,232 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly Myo.Net, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class Thalmic.Myo.MyoEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.EventArgs
+    Void .ctor(Thalmic.Myo.IMyo, System.DateTimeOffset): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.DateTimeOffset TimeStamp 'get ' : 
+    Thalmic.Myo.IMyo Myo 'get ' : 
+  Methods:
+    get_Myo(): PrivateScope, Public, HideBySig, SpecialName
+    get_TimeStamp(): PrivateScope, Public, HideBySig, SpecialName
+Struct Thalmic.Myo.Vector3: AutoLayout, AnsiClass, Class, Public, ExplicitLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+    Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Thalmic.Myo.Vector3 Zero : Public, Static, InitOnly
+  Properties:
+    Double Item [Int32] 'get set' : 
+    Double Z   'get set' : 
+    Double Y   'get set' : 
+    Double X   'get set' : 
+  Methods:
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Z(): PrivateScope, Public, HideBySig, SpecialName
+    set_Z(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Item(Int32): PrivateScope, Public, HideBySig, SpecialName
+    set_Item(Int32, Double): PrivateScope, Public, HideBySig, SpecialName
+    Length(): PrivateScope, Public, HideBySig
+    LengthSquared(): PrivateScope, Public, HideBySig
+    op_Addition(Vector3, Vector3): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Subtraction(Vector3, Vector3): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Multiply(Double, Vector3): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Multiply(Vector3, Double): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Division(Vector3, Double): PrivateScope, Public, Static, HideBySig, SpecialName
+    Normalized(): PrivateScope, Public, HideBySig
+    DotProduct(Vector3, Vector3): PrivateScope, Public, Static, HideBySig
+    CrossProduct(Vector3, Vector3): PrivateScope, Public, Static, HideBySig
+    AngleTo(Vector3, Vector3): PrivateScope, Public, Static, HideBySig
+Class Thalmic.Myo.AccelerometerDataEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Thalmic.Myo.MyoEventArgs
+    Void .ctor(Thalmic.Myo.IMyo, System.DateTimeOffset, Thalmic.Myo.Vector3): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Thalmic.Myo.Vector3 Accelerometer 'get ' : 
+  Methods:
+    get_Accelerometer(): PrivateScope, Public, HideBySig, SpecialName
+Struct Thalmic.Myo.Arm: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    Thalmic.Myo.Arm Left = 1 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.Arm Right = 0 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.Arm Unknown = 2 : Public, Static, Literal, HasDefault
+Struct Thalmic.Myo.XDirection: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    Thalmic.Myo.XDirection TowardWrist = 0 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.XDirection TowardElbow = 1 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.XDirection Unknown = 2 : Public, Static, Literal, HasDefault
+Class Thalmic.Myo.GyroscopeDataEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Thalmic.Myo.MyoEventArgs
+    Void .ctor(Thalmic.Myo.IMyo, System.DateTimeOffset, Thalmic.Myo.Vector3): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Thalmic.Myo.Vector3 Gyroscope 'get ' : 
+  Methods:
+    get_Gyroscope(): PrivateScope, Public, HideBySig, SpecialName
+Class Thalmic.Myo.RecognizedArmEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Thalmic.Myo.MyoEventArgs
+    Void .ctor(Thalmic.Myo.IMyo, System.DateTimeOffset, Thalmic.Myo.Arm, Thalmic.Myo.XDirection): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Thalmic.Myo.XDirection XDirection 'get ' : 
+    Thalmic.Myo.Arm Arm 'get ' : 
+  Methods:
+    get_Arm(): PrivateScope, Public, HideBySig, SpecialName
+    get_XDirection(): PrivateScope, Public, HideBySig, SpecialName
+Struct Thalmic.Myo.Quaternion: AutoLayout, AnsiClass, Class, Public, ExplicitLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+    Void .ctor(Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Thalmic.Myo.Quaternion Zero : Public, Static, InitOnly
+  Properties:
+    Double Item [Int32] 'get set' : 
+    Double W   'get set' : 
+    Double Z   'get set' : 
+    Double Y   'get set' : 
+    Double X   'get set' : 
+  Methods:
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Z(): PrivateScope, Public, HideBySig, SpecialName
+    set_Z(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_W(): PrivateScope, Public, HideBySig, SpecialName
+    set_W(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Item(Int32): PrivateScope, Public, HideBySig, SpecialName
+    set_Item(Int32, Double): PrivateScope, Public, HideBySig, SpecialName
+    Length(): PrivateScope, Public, HideBySig
+    LengthSquared(): PrivateScope, Public, HideBySig
+    Roll(Quaternion): PrivateScope, Public, Static, HideBySig
+    Pitch(Quaternion): PrivateScope, Public, Static, HideBySig
+    Yaw(Quaternion): PrivateScope, Public, Static, HideBySig
+    op_Addition(Quaternion, Quaternion): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Subtraction(Quaternion, Quaternion): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Multiply(Quaternion, Quaternion): PrivateScope, Public, Static, HideBySig, SpecialName
+    Inverse(): PrivateScope, Public, HideBySig
+    Normalized(): PrivateScope, Public, HideBySig
+Class Thalmic.Myo.OrientationDataEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Thalmic.Myo.MyoEventArgs
+    Void .ctor(Thalmic.Myo.IMyo, System.DateTimeOffset, Thalmic.Myo.Quaternion): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Thalmic.Myo.Quaternion Orientation 'get ' : 
+  Methods:
+    get_Orientation(): PrivateScope, Public, HideBySig, SpecialName
+Class Thalmic.Myo.RssiDataEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Thalmic.Myo.MyoEventArgs
+    Void .ctor(Thalmic.Myo.IMyo, System.DateTimeOffset, Byte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Byte Rssi  'get ' : 
+  Methods:
+    get_Rssi(): PrivateScope, Public, HideBySig, SpecialName
+Class Thalmic.Myo.PoseEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :Thalmic.Myo.MyoEventArgs
+    Void .ctor(Thalmic.Myo.IMyo, System.DateTimeOffset, Thalmic.Myo.Pose): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Thalmic.Myo.Pose Pose 'get ' : 
+  Methods:
+    get_Pose(): PrivateScope, Public, HideBySig, SpecialName
+Struct Thalmic.Myo.FirmwareVersion: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    UInt32 FirmwareVersionMajor : Public, InitOnly
+    UInt32 FirmwareVersionMinor : Public, InitOnly
+    UInt32 FirmwareVersionPatch : Public, InitOnly
+    UInt32 FirmwareVersionHardwareRev : Public, InitOnly
+  Methods:
+    ToString(): PrivateScope, Public, Final, Virtual, HideBySig
+Interface Thalmic.Myo.IMyo: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    System.IDisposable
+  Properties:
+    System.ValueType FirmwareVersion 'get ' FirmwareVersion IsBoxed : 
+    System.String MacAddress 'get ' : 
+    System.String Name 'get ' : 
+  Events:
+    System.EventHandler`1[Thalmic.Myo.PoseEventArgs] Pose: SpecialName
+    System.EventHandler`1[Thalmic.Myo.RssiDataEventArgs] Rssi: SpecialName
+    System.EventHandler`1[Thalmic.Myo.GyroscopeDataEventArgs] GyroscopeDataAquired: SpecialName
+    System.EventHandler`1[Thalmic.Myo.AccelerometerDataEventArgs] AccelerometerDataAcquired: SpecialName
+    System.EventHandler`1[Thalmic.Myo.OrientationDataEventArgs] OrientationDataAcquired: SpecialName
+  Methods:
+    get_Name(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_MacAddress(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FirmwareVersion(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_OrientationDataAcquired(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_OrientationDataAcquired(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_AccelerometerDataAcquired(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_AccelerometerDataAcquired(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_GyroscopeDataAquired(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_GyroscopeDataAquired(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_Rssi(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_Rssi(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_Pose(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_Pose(EventHandler`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    Vibrate(VibrationType): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RequestRssi(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class Thalmic.Myo.Hub: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Events:
+    System.EventHandler`1[Thalmic.Myo.MyoEventArgs] LostArm: SpecialName
+    System.EventHandler`1[Thalmic.Myo.RecognizedArmEventArgs] RecognizedArm: SpecialName
+    System.EventHandler`1[Thalmic.Myo.MyoEventArgs] MyoUnpaired: SpecialName
+    System.EventHandler`1[Thalmic.Myo.MyoEventArgs] MyoPaired: SpecialName
+    System.EventHandler`1[Thalmic.Myo.MyoEventArgs] MyoDisconnected: SpecialName
+    System.EventHandler`1[Thalmic.Myo.MyoEventArgs] MyoConnected: SpecialName
+  Methods:
+    WaitForMyo(TimeSpan): PrivateScope, Public, HideBySig
+    WaitForMyo(): PrivateScope, Public, HideBySig
+    WaitForMyoAsync(TimeSpan): PrivateScope, Public, HideBySig
+    Run(TimeSpan): PrivateScope, Public, HideBySig
+    Run(): PrivateScope, Public, HideBySig
+    RunOnce(TimeSpan): PrivateScope, Public, HideBySig
+    RunOnce(): PrivateScope, Public, HideBySig
+    RunAsync(TimeSpan): PrivateScope, Public, HideBySig
+    RunOnceAsync(TimeSpan): PrivateScope, Public, HideBySig
+    add_MyoConnected(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_MyoConnected(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_MyoDisconnected(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_MyoDisconnected(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_MyoPaired(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_MyoPaired(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_MyoUnpaired(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_MyoUnpaired(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_RecognizedArm(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_RecognizedArm(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_LostArm(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_LostArm(EventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct Thalmic.Myo.Pose: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    Thalmic.Myo.Pose Rest = 0 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.Pose Fist = 1 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.Pose WaveIn = 2 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.Pose WaveOut = 3 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.Pose FingersSpread = 4 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.Pose Reserved1 = 5 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.Pose ThumbToPinky = 6 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.Pose Unknown = 65535 : Public, Static, Literal, HasDefault
+Struct Thalmic.Myo.VibrationType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    Thalmic.Myo.VibrationType Short = 0 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.VibrationType Medium = 1 : Public, Static, Literal, HasDefault
+    Thalmic.Myo.VibrationType Long = 2 : Public, Static, Literal, HasDefault
