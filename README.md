@@ -17,6 +17,10 @@ The recommended way to install Myo.NET is via the NuGet Package Manager.
 Otherwise, add a reference to the Myo.Net.dll and copy the platform specific myo*.dll into the same directory as your application.
 
 ## Examples
+[Hello Myo](#hello-myo)
+
+## Hello Myo
+
 ```C#
 using System;
 using Thalmic.Myo;
