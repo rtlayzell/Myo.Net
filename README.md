@@ -4,7 +4,7 @@ Myo.NET is an unofficial wrapper of the [*Thalmic Labs Myo&trade;*](https://www.
 
 ## Support
 
-- Myo SDK Beta version 6.0
+- Myo SDK for Windows Beta version 6.0
 
 ## Dependencies
 
@@ -17,7 +17,7 @@ The recommended way to install Myo.NET is via the NuGet Package Manager.
 Otherwise, add a reference to the Myo.Net.dll and copy the platform specific myo*.dll into the same directory as your application.
 
 ## Examples
-[Hello Myo](#hello-myo)
+- [Hello Myo](#hello-myo)
 
 ## Hello Myo
 
