@@ -16,8 +16,9 @@ Because it is writtin in managed C++/CLI, Myo.NET can be used directly with .NET
 
 ## Build
 
-- [Download]()
-- Open the Myo.Net solution file.
+1. [Download]()
+2. Open the Myo.Net solution file.
+3. 
 
 ## Installation
 
@@ -48,18 +49,16 @@ namespace HelloMyo
 			{
 				using (var hub = new Hub("com.example.hello-myo"))
 				{
-					hub.MyoUnpaired += OnUnpair;
-					hub.RecognizedArm += OnRecognizedArm;
-					hub.LostArm += OnLostArm;
-
 					Console.WriteLine("Attempting to find a Myo...");
-					
 					IMyo myo = hub.WaitForMyo(TimeSpan.FromSeconds(10));
-					
 					if (myo == null)
 						throw new TimeoutException("Unable to find a Myo!");
 
 					Console.WriteLine("Connected to a Myo armband!\n");
+
+					hub.MyoUnpaired += OnUnpair;
+					hub.RecognizedArm += OnRecognizedArm;
+					hub.LostArm += OnLostArm;
 
 					myo.PoseChanged += OnPoseChanged;
 					myo.OrientationDataAcquired += OnOrientationData;
