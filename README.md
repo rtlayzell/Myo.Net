@@ -12,7 +12,7 @@ Because it is writtin in managed C++/CLI, Myo.NET can be used directly with .NET
 ## Dependencies
 
 - [Myo Connect for Windows v0.6.0](https://developer.thalmic.com/downloads)
-- [Myo Windows v0.6.0](https://developer.thalmic.com/downloads)
+- [Myo Firmware v1.0.3](https://developer.thalmic.com/downloads)
 
 ## Build
 
