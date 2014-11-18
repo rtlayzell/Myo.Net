@@ -11,7 +11,7 @@ using namespace System::Runtime::InteropServices;
 #include "OrientationDataEventArgs.hpp"
 #include "GyroscopeDataEventArgs.hpp"
 #include "RssiDataEventArgs.hpp"
-#include "PoseEventArgs.hpp"
+#include "PoseChangedEventArgs.hpp"
 
 namespace Thalmic
 {

@@ -36,7 +36,7 @@ namespace HelloMyo
 					hub.RecognizedArm += OnRecognizedArm;
 					hub.LostArm += OnLostArm;
 
-					myo.Pose += OnPose;
+					myo.PoseChanged += OnPoseChanged;
 					myo.OrientationDataAcquired += OnOrientationData;
 
 					while (true)
@@ -101,7 +101,7 @@ namespace HelloMyo
 
 		// OnPose() is called whenever the Myo detects that the person wearing it has changed their pose, for example,
 		// making a fist, or not making a fist anymore.
-		static void OnPose(object sender, PoseEventArgs e)
+		static void OnPoseChanged(object sender, PoseChangedEventArgs e)
 		{
 			currentPose = e.Pose;
 

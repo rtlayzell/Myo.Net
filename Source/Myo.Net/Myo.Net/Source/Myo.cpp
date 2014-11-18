@@ -50,7 +50,7 @@ namespace Thalmic
 
 				break;
 			case libmyo_event_pose:
-				this->Pose(this, gcnew PoseEventArgs(this, dtime,
+				this->PoseChanged(this, gcnew PoseChangedEventArgs(this, dtime,
 					Thalmic::Myo::Pose(static_cast<Thalmic::Myo::Pose>(libmyo_event_get_pose(ev)))));
 				break;
 			case libmyo_event_rssi:

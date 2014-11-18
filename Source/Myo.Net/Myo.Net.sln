@@ -22,6 +22,7 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{74C77080-4BEA-441A-94B2-ECF92188945F}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{74C77080-4BEA-441A-94B2-ECF92188945F}.Debug|Any CPU.Build.0 = Debug|Win32
 		{74C77080-4BEA-441A-94B2-ECF92188945F}.Debug|Win32.ActiveCfg = Debug|Win32
 		{74C77080-4BEA-441A-94B2-ECF92188945F}.Debug|Win32.Build.0 = Debug|Win32
 		{74C77080-4BEA-441A-94B2-ECF92188945F}.Debug|x64.ActiveCfg = Debug|x64
@@ -36,6 +37,7 @@ Global
 		{74C77080-4BEA-441A-94B2-ECF92188945F}.Release|x86.ActiveCfg = Release|Win32
 		{74C77080-4BEA-441A-94B2-ECF92188945F}.Release|x86.Build.0 = Release|Win32
 		{8BD494B3-0485-449E-A601-A6868F147D81}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{8BD494B3-0485-449E-A601-A6868F147D81}.Debug|Any CPU.Build.0 = Debug|x86
 		{8BD494B3-0485-449E-A601-A6868F147D81}.Debug|Win32.ActiveCfg = Debug|x86
 		{8BD494B3-0485-449E-A601-A6868F147D81}.Debug|Win32.Build.0 = Debug|x86
 		{8BD494B3-0485-449E-A601-A6868F147D81}.Debug|x64.ActiveCfg = Debug|x64
