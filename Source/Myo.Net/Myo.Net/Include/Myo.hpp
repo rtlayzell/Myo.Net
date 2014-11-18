@@ -120,7 +120,7 @@ namespace Thalmic
 			///<summary>
 			/// Occurs when a paired Myo has provided a new pose. 
 			///</summary>
-			event EventHandler<PoseEventArgs^>^ Pose;
+			event EventHandler<PoseChangedEventArgs^>^ PoseChanged;
 			
 			///<summary>
 			/// Engage the Myo's built in vibration motor.
@@ -203,7 +203,7 @@ namespace Thalmic
 			///<summary>
 			/// Occurs when a paired Myo has provided a new pose. 
 			///</summary>
-			virtual event EventHandler<PoseEventArgs^>^ Pose;
+			virtual event EventHandler<PoseChangedEventArgs^>^ PoseChanged;
 			
 			///<summary>
 			/// Engage the Myo's built in vibration motor.

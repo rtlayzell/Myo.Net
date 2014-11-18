@@ -131,16 +131,19 @@ namespace Thalmic
 			GCHandle hub_handle = GCHandle::Alloc(_hub);
 			IntPtr pointer = GCHandle::ToIntPtr(hub_handle);
 
-			libmyo_error_details_t err = 0;
-			libmyo_run(_hub->_libmyoObject(), duration_ms, &local::handler, pointer.ToPointer(), &err);
-			ThrowHelper::ThrowOnError(err);
-
-			hub_handle.Free( );
+			try
+			{
+				libmyo_error_details_t err = 0;
+				libmyo_run(_hub->_libmyoObject(), duration_ms, &local::handler, pointer.ToPointer(), &err);
+				ThrowHelper::ThrowOnError(err);
+			}
+			finally { hub_handle.Free( ); }
 		}
 
 		void run_once_impl(Hub^ _hub, unsigned int duration_ms)
 		{
-			struct local {
+			struct local
+			{
 				static libmyo_handler_result_t handler(void* user_data, libmyo_event_t event) {
 					GCHandle handle = GCHandle::FromIntPtr(IntPtr(user_data));
 					Hub^ hub = (Hub^)handle.Target;
@@ -154,11 +157,13 @@ namespace Thalmic
 			GCHandle hub_handle = GCHandle::Alloc(_hub);
 			IntPtr pointer = GCHandle::ToIntPtr(hub_handle);
 
-			libmyo_error_details_t err = 0;
-			libmyo_run(_hub->_libmyoObject(), duration_ms, &local::handler, pointer.ToPointer(), &err);
-			ThrowHelper::ThrowOnError(err);
-
-			hub_handle.Free( );
+			try
+			{
+				libmyo_error_details_t err = 0;
+				libmyo_run(_hub->_libmyoObject( ), duration_ms, &local::handler, pointer.ToPointer( ), &err);
+				ThrowHelper::ThrowOnError(err);
+			}
+			finally { hub_handle.Free( ); }
 		}
 
 		IMyo^ wait_for_myo_impl(Hub^ _hub, unsigned int timeout_ms)
@@ -186,22 +191,26 @@ namespace Thalmic
 				}
 			};
 
+
 			GCHandle hub_handle = GCHandle::Alloc(_hub);
 			IntPtr pointer = GCHandle::ToIntPtr(hub_handle);
 
-			do {
-				libmyo_error_details_t err = 0;
-				libmyo_run(_hub->_libmyoObject(), timeout_ms ? timeout_ms : 1000, &local::handler, pointer.ToPointer(), &err);
-				ThrowHelper::ThrowOnError(err);
+			try
+			{
+				do
+				{
+					libmyo_error_details_t err = 0;
+					libmyo_run(_hub->_libmyoObject( ), timeout_ms?timeout_ms:1000, &local::handler, pointer.ToPointer( ), &err);
+					ThrowHelper::ThrowOnError(err);
+				}
+				while (!timeout_ms && _hub->Myos->Count <= prevSize);
 
-			} while (!timeout_ms && _hub->Myos->Count <= prevSize);
+				if (_hub->Myos->Count <= prevSize)
+					return nullptr;
 
-			if (_hub->Myos->Count <= prevSize) {
-				return nullptr;
+				return _hub->Myos[_hub->Myos->Count - 1];
 			}
-
-			hub_handle.Free( );
-			return _hub->Myos[_hub->Myos->Count - 1];
+			finally { hub_handle.Free( ); }
 		}
 
 		IMyo^ Hub::WaitForMyo( )

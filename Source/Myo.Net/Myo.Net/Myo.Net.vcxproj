@@ -180,7 +180,7 @@
     <ClCompile Include="Source\MyoEventArgs.cpp" />
     <ClCompile Include="Source\OrientationDataEventArgs.cpp" />
     <ClCompile Include="Source\Pose.cpp" />
-    <ClCompile Include="Source\PoseEventArgs.cpp" />
+    <ClCompile Include="Source\PoseChangedEventArgs.cpp" />
     <ClCompile Include="Source\Quaternion.cpp" />
     <ClCompile Include="Source\RecognizedArmEventArgs.cpp" />
     <ClCompile Include="Source\RssiDataEventArgs.cpp" />
@@ -202,7 +202,7 @@
     <ClInclude Include="Include\MyoEventArgs.hpp" />
     <ClInclude Include="Include\OrientationDataEventArgs.hpp" />
     <ClInclude Include="Include\Pose.hpp" />
-    <ClInclude Include="Include\PoseEventArgs.hpp" />
+    <ClInclude Include="Include\PoseChangedEventArgs.hpp" />
     <ClInclude Include="Include\Quaternion.hpp" />
     <ClInclude Include="Include\RecognizedArmEventArgs.hpp" />
     <ClInclude Include="Include\RssiDataEventArgs.hpp" />

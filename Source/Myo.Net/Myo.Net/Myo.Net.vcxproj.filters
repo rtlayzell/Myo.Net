@@ -57,9 +57,6 @@
     <ClCompile Include="Source\OrientationDataEventArgs.cpp">
       <Filter>Source Files\Myo\Event</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PoseEventArgs.cpp">
-      <Filter>Source Files\Myo\Event</Filter>
-    </ClCompile>
     <ClCompile Include="Source\RecognizedArmEventArgs.cpp">
       <Filter>Source Files\Myo\Event</Filter>
     </ClCompile>
@@ -80,6 +77,9 @@
     </ClCompile>
     <ClCompile Include="Source\Vector3.cpp">
       <Filter>Source Files\Myo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PoseChangedEventArgs.cpp">
+      <Filter>Source Files\Myo\Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +113,6 @@
     <ClInclude Include="Include\MyoEventArgs.hpp">
       <Filter>Header Files\Myo\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Include\PoseEventArgs.hpp">
-      <Filter>Header Files\Myo\Event</Filter>
-    </ClInclude>
     <ClInclude Include="Include\RecognizedArmEventArgs.hpp">
       <Filter>Header Files\Myo\Event</Filter>
     </ClInclude>
@@ -127,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="Include\Myo.hpp">
       <Filter>Header Files\Myo\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\PoseChangedEventArgs.hpp">
+      <Filter>Header Files\Myo\Event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

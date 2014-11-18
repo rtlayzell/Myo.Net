@@ -10,12 +10,12 @@ namespace Thalmic
 {
 	namespace Myo
 	{
-		public ref class PoseEventArgs : public MyoEventArgs
+		public ref class PoseChangedEventArgs : public MyoEventArgs
 		{
 		private:
 			Thalmic::Myo::Pose _pose;
 		public:
-			PoseEventArgs(IMyo^ device, DateTimeOffset timestamp, Thalmic::Myo::Pose pose)
+			PoseChangedEventArgs(IMyo^ device, DateTimeOffset timestamp, Thalmic::Myo::Pose pose)
 				: MyoEventArgs(device, timestamp), _pose(pose) { }
 
 			property Thalmic::Myo::Pose Pose { Thalmic::Myo::Pose get( ){ return _pose; } }

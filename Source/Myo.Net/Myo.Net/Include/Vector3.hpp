@@ -9,7 +9,7 @@ namespace Thalmic
 		///</summary>
 		[System::Diagnostics::DebuggerDisplayAttribute("\\{X={X}, Y={Y}, Z={Z}\\}")]
 		[System::Runtime::InteropServices::StructLayoutAttribute(System::Runtime::InteropServices::LayoutKind::Explicit)]
-		public value class Vector3 sealed
+		public value struct Vector3 sealed
 		{
 		private:
 			[System::Runtime::InteropServices::FieldOffsetAttribute(0) ] double _x; 
