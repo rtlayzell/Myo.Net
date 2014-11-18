@@ -17,6 +17,7 @@ Because it is writtin in managed C++/CLI, Myo.NET can be used directly with .NET
 ## Build
 
 - [Download]()
+- Open the Myo.Net solution file.
 
 ## Installation
 
@@ -60,7 +61,7 @@ namespace HelloMyo
 
 					Console.WriteLine("Connected to a Myo armband!\n");
 
-					myo.Pose += OnPose;
+					myo.PoseChanged += OnPoseChanged;
 					myo.OrientationDataAcquired += OnOrientationData;
 
 					while (true)
@@ -125,7 +126,7 @@ namespace HelloMyo
 
 		// OnPose() is called whenever the Myo detects that the person wearing it has changed their pose, for example,
 		// making a fist, or not making a fist anymore.
-		static void OnPose(object sender, PoseEventArgs e)
+		static void OnPoseChanged(object sender, PoseChangedEventArgs e)
 		{
 			currentPose = e.Pose;
 
