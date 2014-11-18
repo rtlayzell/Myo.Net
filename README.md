@@ -1,9 +1,6 @@
 # Myo.NET
 
-Myo.NET is an unofficial wrapper of the [*Thalmic Labs Myo&trade;*](https://www.thalmic.com/en/myo/) [SDK](https://developer.thalmic.com/docs/api_reference/platform/index.html) written in C++/CLI.
-It is uses the core C API's of the SDK and in many ways mirrors the native C++ SDK.
-
-Because it is writtin in managed C++/CLI, Myo.NET can be used directly with .NET languages such as C#/VB.NET
+Myo.NET is an unofficial wrapper of the [*Thalmic Labs Myo&trade;*](https://www.thalmic.com/en/myo/) [SDK](https://developer.thalmic.com/docs/api_reference/platform/index.html) for .NET managed languages.
 
 ## Support
 
