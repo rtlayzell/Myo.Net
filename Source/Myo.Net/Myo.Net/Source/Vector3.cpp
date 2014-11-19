@@ -2,7 +2,7 @@
 #include "Vector3.hpp"
 #include "myo/myo.hpp"
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{

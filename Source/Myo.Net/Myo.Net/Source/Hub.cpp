@@ -7,7 +7,7 @@
 #include "Hub.hpp"
 #include "ThrowOnError.hpp"
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{

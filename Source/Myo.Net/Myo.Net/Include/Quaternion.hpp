@@ -2,7 +2,7 @@
 
 using namespace System;
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{

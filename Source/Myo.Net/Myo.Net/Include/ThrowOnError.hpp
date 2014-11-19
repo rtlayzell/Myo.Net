@@ -4,7 +4,7 @@
 #include <myo/libmyo.h>
 
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{

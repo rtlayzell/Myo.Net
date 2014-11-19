@@ -1,5 +1,5 @@
 ﻿using System;
-using Thalmic.Myo;
+using MyoNet.Myo;
 
 namespace HelloMyo
 {

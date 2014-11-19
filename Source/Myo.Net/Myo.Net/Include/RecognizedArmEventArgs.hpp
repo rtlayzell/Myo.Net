@@ -5,7 +5,7 @@ using namespace System;
 #include "MyoEventArgs.hpp"
 #include "Arm.hpp"
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{
@@ -19,8 +19,8 @@ namespace Thalmic
 			RecognizedArmEventArgs(IMyo^ myo, DateTimeOffset timestamp, Arm arm, XDirection xDirection)
 				: MyoEventArgs(myo, timestamp), _arm(arm), _xDirection(xDirection) { }
 
-			property Thalmic::Myo::Arm Arm { Thalmic::Myo::Arm get( ) { return _arm; } }
-			property Thalmic::Myo::XDirection XDirection { Thalmic::Myo::XDirection get( ) { return _xDirection; } }
+			property MyoNet::Myo::Arm Arm { MyoNet::Myo::Arm get( ) { return _arm; } }
+			property MyoNet::Myo::XDirection XDirection { MyoNet::Myo::XDirection get( ) { return _xDirection; } }
 		};
 	}
 }

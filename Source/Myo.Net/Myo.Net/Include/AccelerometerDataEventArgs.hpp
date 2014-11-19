@@ -6,7 +6,7 @@ using namespace System;
 #include "Vector3.hpp"
 
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{

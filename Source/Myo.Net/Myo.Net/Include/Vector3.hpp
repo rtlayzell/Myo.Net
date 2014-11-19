@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{

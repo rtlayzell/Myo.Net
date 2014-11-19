@@ -3,7 +3,7 @@
 #include "ThrowOnError.hpp"
 
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{
@@ -17,7 +17,7 @@ namespace Thalmic
 		
 		Myo::~Myo() { }
 
-		void Myo::_SetFirmwareVersion(Thalmic::Myo::FirmwareVersion version)
+		void Myo::_SetFirmwareVersion(MyoNet::Myo::FirmwareVersion version)
 		{
 			_firmware = version;
 		}
@@ -51,7 +51,7 @@ namespace Thalmic
 				break;
 			case libmyo_event_pose:
 				this->PoseChanged(this, gcnew PoseChangedEventArgs(this, dtime,
-					Thalmic::Myo::Pose(static_cast<Thalmic::Myo::Pose>(libmyo_event_get_pose(ev)))));
+					MyoNet::Myo::Pose(static_cast<MyoNet::Myo::Pose>(libmyo_event_get_pose(ev)))));
 				break;
 			case libmyo_event_rssi:
 				this->Rssi(this, gcnew RssiDataEventArgs(this, dtime, libmyo_event_get_rssi(ev)));

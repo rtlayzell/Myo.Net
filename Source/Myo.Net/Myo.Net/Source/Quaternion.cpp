@@ -2,7 +2,7 @@
 #include "Quaternion.hpp"
 
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{

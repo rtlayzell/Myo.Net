@@ -6,19 +6,19 @@ using namespace System;
 #include "Pose.hpp"
 
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{
 		public ref class PoseChangedEventArgs : public MyoEventArgs
 		{
 		private:
-			Thalmic::Myo::Pose _pose;
+			MyoNet::Myo::Pose _pose;
 		public:
-			PoseChangedEventArgs(IMyo^ device, DateTimeOffset timestamp, Thalmic::Myo::Pose pose)
+			PoseChangedEventArgs(IMyo^ device, DateTimeOffset timestamp, MyoNet::Myo::Pose pose)
 				: MyoEventArgs(device, timestamp), _pose(pose) { }
 
-			property Thalmic::Myo::Pose Pose { Thalmic::Myo::Pose get( ){ return _pose; } }
+			property MyoNet::Myo::Pose Pose { MyoNet::Myo::Pose get( ){ return _pose; } }
 		};
 	}
 }

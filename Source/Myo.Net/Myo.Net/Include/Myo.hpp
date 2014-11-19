@@ -13,7 +13,7 @@ using namespace System::Runtime::InteropServices;
 #include "RssiDataEventArgs.hpp"
 #include "PoseChangedEventArgs.hpp"
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{
@@ -95,7 +95,7 @@ namespace Thalmic
 			///<summary>
 			/// Gets the <see cref="FirmwareVersion"/> of the <see cref="Myo"/>.
 			///</summary>
-			property Thalmic::Myo::FirmwareVersion^ FirmwareVersion { Thalmic::Myo::FirmwareVersion^ get( ); }
+			property MyoNet::Myo::FirmwareVersion^ FirmwareVersion { MyoNet::Myo::FirmwareVersion^ get( ); }
 
 			///<summary>
 			/// Occurs when a paired Myo has provided new orientation data. 
@@ -137,7 +137,7 @@ namespace Thalmic
 		};
 
 		///<summary>
-		/// Represents a physical Thalmic Labs(TM) Myo(TM) Device.
+		/// Represents a physical MyoNet Labs(TM) Myo(TM) Device.
 		///</summary>
 		private ref class Myo : public IMyo
 		{
@@ -178,7 +178,7 @@ namespace Thalmic
 			///<summary>
 			/// Gets the <see cref="FirmwareVersion"/> of the <see cref="Myo"/>.
 			///</summary>
-			virtual property Thalmic::Myo::FirmwareVersion^ FirmwareVersion { Thalmic::Myo::FirmwareVersion^ get( ) { return _firmware; } }
+			virtual property MyoNet::Myo::FirmwareVersion^ FirmwareVersion { MyoNet::Myo::FirmwareVersion^ get( ) { return _firmware; } }
 
 			///<summary>
 			/// Occurs when a paired Myo has provided new orientation data. 

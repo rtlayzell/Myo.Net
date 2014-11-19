@@ -4,7 +4,7 @@ using namespace System;
 using namespace System::Collections;
 using namespace System::Runtime::InteropServices;
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{

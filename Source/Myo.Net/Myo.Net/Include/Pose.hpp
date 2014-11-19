@@ -3,7 +3,7 @@
 
 #include "myo/cxx/Pose.hpp"
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{

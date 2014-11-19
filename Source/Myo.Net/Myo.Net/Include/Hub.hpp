@@ -10,7 +10,7 @@ using namespace System::Runtime::InteropServices;
 #include "RecognizedArmEventArgs.hpp"
 #include "Myo.hpp"
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{

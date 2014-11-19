@@ -4,7 +4,7 @@
 #include <msclr\marshal_cppstd.h>
 
 
-namespace Thalmic
+namespace MyoNet
 {
 	namespace Myo
 	{
