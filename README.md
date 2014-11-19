@@ -23,7 +23,7 @@ Otherwise, add a reference to the Myo.Net.dll and copy the platform specific myo
 
 ```C#
 using System;
-using Thalmic.Myo;
+using MyoNet.Myo;
 
 namespace HelloMyo
 {
