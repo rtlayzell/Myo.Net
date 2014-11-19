@@ -1,23 +1,15 @@
 # Myo.NET
 
-Myo.NET is an unofficial wrapper of the [*Thalmic Labs Myo&trade;*](https://www.thalmic.com/en/myo/) [SDK](https://developer.thalmic.com/docs/api_reference/platform/index.html) written in C++/CLI.
-It is uses the core C API's of the SDK and in many ways mirrors the native C++ SDK.
-
-Because it is writtin in managed C++/CLI, Myo.NET can be used directly with .NET languages such as C#/VB.NET
+Myo.NET is an unofficial wrapper of the [*Thalmic Labs Myo&trade;*](https://www.thalmic.com/en/myo/) [SDK](https://developer.thalmic.com/docs/api_reference/platform/index.html) for .NET managed languages.
 
 ## Support
 
-- Myo SDK Beta version 6.0
+- Myo SDK for Windows Beta version 6.0
 
 ## Dependencies
 
 - [Myo Connect for Windows v0.6.0](https://developer.thalmic.com/downloads)
 - [Myo Firmware v1.0.3](https://developer.thalmic.com/downloads)
-
-## Build
-
-- [Download]()
-- Open the Myo.Net solution file.
 
 ## Installation
 
@@ -25,9 +17,13 @@ The recommended way to install Myo.NET is via the NuGet Package Manager.
 Otherwise, add a reference to the Myo.Net.dll and copy the platform specific myo*.dll into the same directory as your application.
 
 ## Examples
+- [Hello Myo](#hello-myo)
+
+## Hello Myo
+
 ```C#
 using System;
-using Thalmic.Myo;
+using MyoNet.Myo;
 
 namespace HelloMyo
 {
@@ -48,18 +44,16 @@ namespace HelloMyo
 			{
 				using (var hub = new Hub("com.example.hello-myo"))
 				{
-					hub.MyoUnpaired += OnUnpair;
-					hub.RecognizedArm += OnRecognizedArm;
-					hub.LostArm += OnLostArm;
-
 					Console.WriteLine("Attempting to find a Myo...");
-					
 					IMyo myo = hub.WaitForMyo(TimeSpan.FromSeconds(10));
-					
 					if (myo == null)
 						throw new TimeoutException("Unable to find a Myo!");
 
 					Console.WriteLine("Connected to a Myo armband!\n");
+
+					hub.MyoUnpaired += OnUnpair;
+					hub.RecognizedArm += OnRecognizedArm;
+					hub.LostArm += OnLostArm;
 
 					myo.PoseChanged += OnPoseChanged;
 					myo.OrientationDataAcquired += OnOrientationData;
