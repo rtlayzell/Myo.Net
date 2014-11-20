@@ -90,8 +90,8 @@ namespace HelloMyo
 
 			// Convert the floating point angles in radians to a scale from 0 to 18.
 			roll_w = (int)((roll + (double)Math.PI) / (Math.PI * 2.0) * 18);
-			pitch_w = (int)((pitch + (float)Math.PI / 2.0) / Math.PI * 18);
-			yaw_w = (int)((yaw + (float)Math.PI) / (Math.PI * 2.0) * 18);
+			pitch_w = (int)((pitch + (double)Math.PI / 2.0) / Math.PI * 18);
+			yaw_w = (int)((yaw + (double)Math.PI) / (Math.PI * 2.0) * 18);
 		}
 
 		// OnPose() is called whenever the Myo detects that the person wearing it has changed their pose, for example,
