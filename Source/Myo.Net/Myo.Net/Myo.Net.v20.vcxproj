@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{74C77080-4BEA-441A-94B2-ECF92188945F}</ProjectGuid>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectGuid>{7921225C-BA3A-480C-8F91-AEA65A62CADB}</ProjectGuid>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>MyoNet</RootNamespace>
   </PropertyGroup>
@@ -71,27 +71,31 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\Build\x86\$(Configuration)\</OutDir>
-    <IntDir>x86\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\Build\x86 - $(TargetFrameworkVersion)\$(Configuration)\</OutDir>
+    <IntDir>x86\$(TargetFrameworkVersion)\$(Configuration)\</IntDir>
+    <TargetName>Myo.Net</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\Build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\Build\$(Platform) - $(TargetFrameworkVersion)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)$(TargetFrameworkVersion)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\Build\x86\$(Configuration)\</OutDir>
-    <IntDir>x86\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\Build\x86 - $(TargetFrameworkVersion)\$(Configuration)\</OutDir>
+    <IntDir>x86\$(TargetFrameworkVersion)\$(Configuration)\</IntDir>
+    <TargetName>Myo.Net</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\Build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\Build\$(Platform) - $(TargetFrameworkVersion)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)$(TargetFrameworkVersion)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NETFX_20;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>Include\;D:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Include</AdditionalIncludeDirectories>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -113,7 +117,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NETFX_20;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>Include\;D:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Include</AdditionalIncludeDirectories>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -130,7 +134,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NETFX_20;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>Include\;D:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Include</AdditionalIncludeDirectories>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
@@ -151,7 +155,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NETFX_20;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>Include\;D:\Projects\Myo.Net\Source\Myo.Net\Myo.Net\Include</AdditionalIncludeDirectories>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
