@@ -2,6 +2,7 @@
 
 using namespace System;
 using namespace System::Collections::Generic;
+using namespace System::Diagnostics;
 using namespace System::Runtime::InteropServices;
 
 #include <myo/libmyo.h>
@@ -12,6 +13,8 @@ using namespace System::Runtime::InteropServices;
 #include "GyroscopeDataEventArgs.hpp"
 #include "RssiDataEventArgs.hpp"
 #include "PoseChangedEventArgs.hpp"
+
+#include "HashCodeHelper.hpp"
 
 namespace MyoNet
 {
@@ -30,7 +33,8 @@ namespace MyoNet
 		/// <summary>
 		/// Structure representing the firmware version of Myo.
 		/// </summary>
-		public value struct FirmwareVersion sealed
+		[DebuggerDisplayAttribute("v{ToString(),nq}")]
+		public value struct FirmwareVersion sealed : IEquatable<FirmwareVersion>
 		{
 			/// <summary>
 			/// Myo's major version must match the required major version.
@@ -53,7 +57,6 @@ namespace MyoNet
 			initonly unsigned int FirmwareVersionHardwareRev;
 
 		internal:
-
 			/// <summary>
 			/// Initializes a new instance of <see cref="FirmwareVersion"/> with specified integers.
 			/// </summary>
@@ -64,7 +67,66 @@ namespace MyoNet
 				, FirmwareVersionHardwareRev(revision) { }
 
 		public:
-			virtual String^ ToString( ) override {
+
+			static bool operator == (FirmwareVersion lhs, FirmwareVersion rhs)
+			{
+				return lhs.Equals(rhs);
+			}
+
+			static bool operator != (FirmwareVersion lhs, FirmwareVersion rhs)
+			{
+				return !lhs.Equals(rhs);
+			}
+			
+			/// <summary> 
+			/// Returns the hash code for this FirmwareVersion instance. 
+			/// </summary> 
+			/// <returns>The hash code.</returns> 
+			virtual int GetHashCode( ) override
+			{
+				int hash = this->FirmwareVersionMajor.GetHashCode( );
+				hash = HashCodeHelper::CombineHashCodes(hash, this->FirmwareVersionMinor.GetHashCode( ));
+				hash = HashCodeHelper::CombineHashCodes(hash, this->FirmwareVersionPatch.GetHashCode( ));
+				hash = HashCodeHelper::CombineHashCodes(hash, this->FirmwareVersionHardwareRev.GetHashCode( ));
+
+				return hash;
+			}
+
+			/// <summary>
+			/// Determines whether the specified object is equal to this FirmwareVersion instance.
+			/// </summary>
+			/// <params>
+			/// <param name="obj">The Object to compare against.</param>
+			/// </params>
+			/// <returns>True if the Object is equal to this FirmwareVersion; False otherwise.</returns>
+			bool Equals(Object^ obj) override
+			{
+				if (dynamic_cast<FirmwareVersion^>(obj) == nullptr)
+					return false;
+				return this->Equals((FirmwareVersion)obj);
+			}
+
+			/// <summary>
+			/// Determines whether the specified FirmwareVersion is equal to this FirmwareVersion instance.
+			/// </summary>
+			/// <params>
+			/// <param name="firmwareVersion">The FirmwareVersion to compare against.</param>
+			/// </params>
+			/// <returns>True if the FirmwareVersion is equal to this FirmwareVersion; False otherwise.</returns>
+			virtual bool Equals(FirmwareVersion firmwareVersion)
+			{
+				return this->FirmwareVersionMajor.Equals(firmwareVersion.FirmwareVersionMajor)
+					&& this->FirmwareVersionMinor.Equals(firmwareVersion.FirmwareVersionMinor)
+					&& this->FirmwareVersionPatch.Equals(firmwareVersion.FirmwareVersionPatch)
+					&& this->FirmwareVersionHardwareRev.Equals(firmwareVersion.FirmwareVersionHardwareRev);
+			}
+
+			/// <summary>
+			/// Returns a String representing this FirmwareVersion instance.
+			/// </summary>
+			/// <returns>The string representation</returns>
+			String^ ToString( ) override 
+			{
 				return String::Format("{0}.{1}.{2}.{3}",
 					FirmwareVersionMajor,
 					FirmwareVersionMinor,
@@ -95,7 +157,7 @@ namespace MyoNet
 			/// <summary>
 			/// Gets the <see cref="FirmwareVersion"/> of the <see cref="Myo"/>.
 			/// </summary>
-			property MyoNet::Myo::FirmwareVersion^ FirmwareVersion { MyoNet::Myo::FirmwareVersion^ get( ); }
+			property MyoNet::Myo::FirmwareVersion FirmwareVersion { MyoNet::Myo::FirmwareVersion get( ); }
 
 			/// <summary>
 			/// Occurs when a paired Myo has provided new orientation data. 
@@ -178,7 +240,7 @@ namespace MyoNet
 			/// <summary>
 			/// Gets the <see cref="FirmwareVersion"/> of the <see cref="Myo"/>.
 			/// </summary>
-			virtual property MyoNet::Myo::FirmwareVersion^ FirmwareVersion { MyoNet::Myo::FirmwareVersion^ get( ) { return _firmware; } }
+			virtual property MyoNet::Myo::FirmwareVersion FirmwareVersion { MyoNet::Myo::FirmwareVersion get( ) { return _firmware; } }
 
 			/// <summary>
 			/// Occurs when a paired Myo has provided new orientation data. 

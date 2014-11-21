@@ -14,6 +14,16 @@ namespace MyoNet
 
 		}
 
+		bool Vector3::operator == (Vector3 lhs, Vector3 rhs)
+		{
+			return lhs.Equals(rhs);
+		}
+
+		bool Vector3::operator != (Vector3 lhs, Vector3 rhs)
+		{
+			return !lhs.Equals(rhs);
+		}
+
 		Vector3 Vector3::operator + (Vector3 lhs, Vector3 rhs)
 		{
 			return Vector3(
@@ -78,6 +88,55 @@ namespace MyoNet
 		double Vector3::AngleTo(Vector3 lhs, Vector3 rhs)
 		{
 			return System::Math::Acos(DotProduct(lhs, rhs) / (lhs.Length( ) * rhs.Length( )));
+		}
+
+		int Vector3::GetHashCode( )
+		{
+			int hash = this->X.GetHashCode( );
+			hash = HashCodeHelper::CombineHashCodes(hash, this->Y.GetHashCode( ));
+			hash = HashCodeHelper::CombineHashCodes(hash, this->Z.GetHashCode( ));
+
+			return hash;
+		}
+
+		bool Vector3::Equals(Object^ obj)
+		{
+			if (dynamic_cast<Vector3^>(obj) == nullptr)
+				return false;
+			return Equals(static_cast<Vector3>(obj));
+		}
+
+		bool Vector3::Equals(Vector3 other)
+		{
+			return this->X.Equals(other.X)
+				&& this->Y.Equals(other.Y)
+				&& this->Z.Equals(other.Z);
+		}
+
+		String^ Vector3::ToString( )
+		{
+			return ToString("G", CultureInfo::CurrentCulture);
+		}
+
+		String^ Vector3::ToString(String^ format)
+		{
+			return ToString(format, CultureInfo::CurrentCulture);
+		}
+
+		String^ Vector3::ToString(String^ format, IFormatProvider^ formatProvider)
+		{
+			StringBuilder^ sb = gcnew StringBuilder( );
+			String^ sep = NumberFormatInfo::GetInstance(formatProvider)->NumberGroupSeparator + " ";
+
+			sb->Append("<");
+			sb->Append(((IFormattable^)this->X)->ToString(format, formatProvider));
+			sb->Append(sep);
+			sb->Append(((IFormattable^)this->Y)->ToString(format, formatProvider));
+			sb->Append(sep);
+			sb->Append(((IFormattable^)this->Z)->ToString(format, formatProvider));
+			sb->Append(">");
+
+			return sb->ToString( );
 		}
 	}
 }

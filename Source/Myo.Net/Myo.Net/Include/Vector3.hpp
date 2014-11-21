@@ -15,7 +15,7 @@ namespace MyoNet
 		/// <summary>
 		/// A vector of three components.
 		/// </summary>
-		[DebuggerDisplayAttribute("{ToString( )}")]
+		[DebuggerDisplayAttribute("{ToString(),nq}")]
 		[StructLayoutAttribute(LayoutKind::Explicit)]
 		public value struct Vector3 sealed : IEquatable<Vector3>, IFormattable
 		{
@@ -103,15 +103,9 @@ namespace MyoNet
 			/// <returns>The squared length of the <see cref="Vector3"/>.</returns>
 			double LengthSquared( ) { return DotProduct(*this, *this); }
 
-			static bool operator == (Vector3 lhs, Vector3 rhs)
-			{
-				return lhs.Equals(rhs);
-			}
+			static bool operator == (Vector3 lhs, Vector3 rhs);
 
-			static bool operator != (Vector3 lhs, Vector3 rhs)
-			{
-				return !lhs.Equals(rhs);
-			}
+			static bool operator != (Vector3 lhs, Vector3 rhs);
 
 			/// <summary>
 			/// Adds the specified <see cref="Vector3"/>'s.
@@ -178,14 +172,7 @@ namespace MyoNet
 			/// Returns the hash code for this Vector3 instance. 
 			/// </summary> 
 			/// <returns>The hash code.</returns> 
-			int GetHashCode( ) override
-			{
-				int hash = this->X.GetHashCode( );
-				hash = HashCodeHelper::CombineHashCodes(hash, this->Y.GetHashCode( ));
-				hash = HashCodeHelper::CombineHashCodes(hash, this->Z.GetHashCode( ));
-
-				return hash;
-			}
+			int GetHashCode( ) override;
 
 			/// <summary>
 			/// Determines whether the specified object is equal to this Vector3 instance.
@@ -194,12 +181,7 @@ namespace MyoNet
 			/// <param name="obj">The Object to compare against.</param>
 			/// </params>
 			/// <returns>True if the Object is equal to this Vector3; False otherwise.</returns>
-			bool Equals(Object^ obj) override
-			{
-				if (dynamic_cast<Vector3^>(obj) == nullptr)
-					return false;
-				return Equals(static_cast<Vector3>(obj));
-			}
+			bool Equals(Object^ obj) override;
 
 			/// <summary>
 			/// Determines whether the specified Vector3 is equal to this Vector3 instance.
@@ -208,21 +190,13 @@ namespace MyoNet
 			/// <param name="other">The Vector3 to compare against.</param>
 			/// </params>
 			/// <returns>True if the Vector3 is equal to this Vector3; False otherwise.</returns>
-			virtual bool Equals(Vector3 other)
-			{
-				return this->X.Equals(other.X)
-					&& this->Y.Equals(other.Y)
-					&& this->Z.Equals(other.Z);
-			}
+			virtual bool Equals(Vector3 other);
 
 			/// <summary>
 			/// Returns a String representing this Vector3 instance.
 			/// </summary>
 			/// <returns>The string representation</returns>
-			virtual String^ ToString( ) override
-			{
-				return ToString("G", CultureInfo::CurrentCulture);
-			}
+			virtual String^ ToString( ) override;
 
 			/// <summary>
 			/// Returns a String representing this Vector3 instance, using the specified format.
@@ -231,10 +205,7 @@ namespace MyoNet
 			/// <param name="format">The format of the individual elements.</param>
 			/// </params>
 			/// <returns>The string representation</returns>
-			String^ ToString(String^ format)
-			{
-				return ToString(format, CultureInfo::CurrentCulture);
-			}
+			String^ ToString(String^ format);
 
 			/// <summary>
 			/// Returns a String representing this Vector3 instance, using the specified format and a IFormatProvider.
@@ -244,21 +215,7 @@ namespace MyoNet
 			/// <param name="formatProvider">The format provider used to format individual elements.</param>
 			/// </params>
 			/// <returns>The string representation</returns>
-			virtual String^ ToString(String^ format, IFormatProvider^ formatProvider)
-			{
-				StringBuilder^ sb = gcnew StringBuilder( );
-				String^ sep = NumberFormatInfo::GetInstance(formatProvider)->NumberGroupSeparator + " ";
-
-				sb->Append("<");
-				sb->Append(((IFormattable^)this->X)->ToString(format, formatProvider));
-				sb->Append(sep);
-				sb->Append(((IFormattable^)this->Y)->ToString(format, formatProvider));
-				sb->Append(sep);
-				sb->Append(((IFormattable^)this->Z)->ToString(format, formatProvider));
-				sb->Append(">");
-
-				return sb->ToString( );
-			}
+			virtual String^ ToString(String^ format, IFormatProvider^ formatProvider);
 		};
 	}
 }

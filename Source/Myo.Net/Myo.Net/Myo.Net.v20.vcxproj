@@ -79,6 +79,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)..\..\Build\$(Platform) - $(TargetFrameworkVersion)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)$(TargetFrameworkVersion)\$(Configuration)\</IntDir>
+    <TargetName>Myo.Net</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -90,6 +91,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)..\..\Build\$(Platform) - $(TargetFrameworkVersion)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)$(TargetFrameworkVersion)\$(Configuration)\</IntDir>
+    <TargetName>Myo.Net</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
