@@ -224,9 +224,11 @@ namespace MyoNet
 			return wait_for_myo_impl(this, (unsigned int)timeout.TotalMilliseconds);
 		}
 
+#if defined NETFX_40
 		System::Threading::Tasks::Task<IMyo^>^ Hub::WaitForMyoAsync(TimeSpan timeout){
 			throw gcnew NotImplementedException( );
 		}
+#endif
 
 		void Hub::Run( )
 		{
@@ -250,6 +252,7 @@ namespace MyoNet
 			run_once_impl(this, (unsigned int)duration.TotalMilliseconds);
 		}
 
+#if defined NETFX_40
 		System::Threading::Tasks::Task^ Hub::RunAsync(TimeSpan duration) {
 			throw gcnew NotImplementedException( );
 		}
@@ -257,6 +260,7 @@ namespace MyoNet
 		System::Threading::Tasks::Task^ Hub::RunOnceAsync(TimeSpan duration) {
 			throw gcnew NotImplementedException( );
 		}
+#endif
 	}
 }
 
