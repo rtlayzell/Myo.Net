@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Quaternion.hpp"
-
+#include "HashCodeHelper.hpp"
 
 namespace MyoNet
 {
@@ -9,6 +9,15 @@ namespace MyoNet
 		Quaternion::Quaternion(double x, double y, double z, double w)
 			: _x(x), _y(y), _z(z), _w(w) { }
 
+		bool Quaternion::operator == (Quaternion lhs, Quaternion rhs)
+		{
+			return lhs.Equals(rhs);
+		}
+
+		bool Quaternion::operator != (Quaternion lhs, Quaternion rhs)
+		{
+			return !lhs.Equals(rhs);
+		}
 
 		Quaternion Quaternion::operator + (Quaternion lhs, Quaternion rhs)
 		{
@@ -70,6 +79,59 @@ namespace MyoNet
 			return Math::Atan2(
 				2.0 * (quat.W * quat.Z + quat.X * quat.Y),
 				1.0 - 2.0 * (quat.Y * quat.Y + quat.Z * quat.Z)); 
+		}
+
+		int Quaternion::GetHashCode( )
+		{
+			int hash = this->X.GetHashCode( );
+			hash = HashCodeHelper::CombineHashCodes(hash, this->Y.GetHashCode( ));
+			hash = HashCodeHelper::CombineHashCodes(hash, this->Z.GetHashCode( ));
+			hash = HashCodeHelper::CombineHashCodes(hash, this->W.GetHashCode( ));
+
+			return hash;
+		}
+
+		bool Quaternion::Equals(Object^ obj)
+		{
+			if (dynamic_cast<Quaternion^>(obj) == nullptr)
+				return false;
+			return Equals(static_cast<Quaternion>(obj));
+		}
+
+		bool Quaternion::Equals(Quaternion other)
+		{
+			return this->X.Equals(other.X)
+				&& this->Y.Equals(other.Y)
+				&& this->Z.Equals(other.Z)
+				&& this->Z.Equals(other.W);
+		}
+
+		String^ Quaternion::ToString( )
+		{
+			return ToString("G", CultureInfo::CurrentCulture);
+		}
+
+		String^ Quaternion::ToString(String^ format)
+		{
+			return ToString(format, CultureInfo::CurrentCulture);
+		}
+
+		String^ Quaternion::ToString(String^ format, IFormatProvider^ formatProvider)
+		{
+			StringBuilder^ sb = gcnew StringBuilder( );
+			String^ sep = NumberFormatInfo::GetInstance(formatProvider)->NumberGroupSeparator + " ";
+
+			sb->Append("{");
+			sb->Append("X:" + ((IFormattable^)this->X)->ToString(format, formatProvider));
+			sb->Append(sep);
+			sb->Append("Y:" + ((IFormattable^)this->Y)->ToString(format, formatProvider));
+			sb->Append(sep);
+			sb->Append("Z:" + ((IFormattable^)this->Z)->ToString(format, formatProvider));
+			sb->Append(sep);
+			sb->Append("W:" + ((IFormattable^)this->W)->ToString(format, formatProvider));
+			sb->Append("}");
+
+			return sb->ToString( );
 		}
 	}
 }

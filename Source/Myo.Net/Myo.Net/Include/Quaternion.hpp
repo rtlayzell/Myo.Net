@@ -1,6 +1,8 @@
 #pragma once
 
 using namespace System;
+using namespace System::Globalization;
+using namespace System::Text;
 
 namespace MyoNet
 {
@@ -9,9 +11,9 @@ namespace MyoNet
 		/// <summary>
 		/// Structure that represents a rotation in three dimensions.
 		/// </summary>
-		[System::Diagnostics::DebuggerDisplayAttribute("\\{X={X}, Y={Y}, Z={Z}, W={W}\\}")]
+		[System::Diagnostics::DebuggerDisplayAttribute("{ToString(),nq}")]
 		[System::Runtime::InteropServices::StructLayoutAttribute(System::Runtime::InteropServices::LayoutKind::Explicit)]
-		public value struct Quaternion sealed
+		public value struct Quaternion sealed : IEquatable<Quaternion>
 		{
 		private:
 			[System::Runtime::InteropServices::FieldOffsetAttribute(0) ] double _x;
@@ -23,7 +25,12 @@ namespace MyoNet
 			/// <summary>
 			/// Represents a quaternion that has X, Y, Z and W values set to zero.
 			/// </summary>
-			static initonly Quaternion Zero = Quaternion(0, 0, 0, 0);
+			static property Quaternion Zero { Quaternion get( ) { return Quaternion(0, 0, 0, 0); } }
+
+			/// <summary>
+			/// Returns a Quaternion representing no rotation.
+			/// </summary>
+			static property Quaternion Identity { Quaternion get( ) { return Quaternion(0, 0, 0, 1); } }
 
 			/// <summary>
 			/// Gets or sets the x component of the <see cref="Quaternion"/>.
@@ -120,6 +127,11 @@ namespace MyoNet
 			/// <returns>The yaw angle in radians.</returns>
 			static double Yaw(Quaternion quat);
 
+
+			static bool operator == (Quaternion lhs, Quaternion rhs);
+
+			static bool operator != (Quaternion lhs, Quaternion rhs);
+
 			/// <summary>
 			/// Adds the specified <see cref="Quaternion"/>'s.
 			/// </summary>
@@ -144,6 +156,56 @@ namespace MyoNet
 			/// Return a new unit <see cref="Quaternion"/> corresponding to the same rotation as this one.
 			/// </summary>
 			Quaternion Normalized( );
+
+			
+			/// <summary> 
+			/// Returns the hash code for this Quaternion instance. 
+			/// </summary> 
+			/// <returns>The hash code.</returns> 
+			int GetHashCode( ) override;
+
+			/// <summary>
+			/// Determines whether the specified object is equal to this Quaternion instance.
+			/// </summary>
+			/// <params>
+			/// <param name="obj">The Object to compare against.</param>
+			/// </params>
+			/// <returns>True if the Object is equal to this Quaternion; False otherwise.</returns>
+			bool Equals(Object^ obj) override;
+
+			/// <summary>
+			/// Determines whether the specified Quaternion is equal to this Quaternion instance.
+			/// </summary>
+			/// <params>
+			/// <param name="other">The Quaternion to compare against.</param>
+			/// </params>
+			/// <returns>True if the Quaternion is equal to this Quaternion; False otherwise.</returns>
+			virtual bool Equals(Quaternion other);
+
+			/// <summary>
+			/// Returns a String representing this Quaternion instance.
+			/// </summary>
+			/// <returns>The string representation</returns>
+			virtual String^ ToString( ) override;
+
+			/// <summary>
+			/// Returns a String representing this Quaternion instance, using the specified format.
+			/// </summary>
+			/// <params>
+			/// <param name="format">The format of the individual elements.</param>
+			/// </params>
+			/// <returns>The string representation</returns>
+			String^ ToString(String^ format);
+
+			/// <summary>
+			/// Returns a String representing this Quaternion instance, using the specified format and a IFormatProvider.
+			/// </summary>
+			/// <params>
+			/// <param name="format">The format of the individual elements.</param>
+			/// <param name="formatProvider">The format provider used to format individual elements.</param>
+			/// </params>
+			/// <returns>The string representation</returns>
+			virtual String^ ToString(String^ format, IFormatProvider^ formatProvider);
 		};
 	}
 }
