@@ -6,6 +6,8 @@ using namespace System::Diagnostics;
 using namespace System::Runtime::InteropServices;
 using namespace System::Text;
 
+#include "HashCodeHelper.hpp"
+
 namespace MyoNet
 {
 	namespace Myo
@@ -101,6 +103,16 @@ namespace MyoNet
 			/// <returns>The squared length of the <see cref="Vector3"/>.</returns>
 			double LengthSquared( ) { return DotProduct(*this, *this); }
 
+			static bool operator == (Vector3 lhs, Vector3 rhs)
+			{
+				return lhs.Equals(rhs);
+			}
+
+			static bool operator != (Vector3 lhs, Vector3 rhs)
+			{
+				return !lhs.Equals(rhs);
+			}
+
 			/// <summary>
 			/// Adds the specified <see cref="Vector3"/>'s.
 			/// </summary>
@@ -162,6 +174,26 @@ namespace MyoNet
 			/// <returns>The angle in radians.</returns>
 			static double AngleTo(Vector3 lhs, Vector3 rhs);
 
+			/// <summary> 
+			/// Returns the hash code for this Vector3 instance. 
+			/// </summary> 
+			/// <returns>The hash code.</returns> 
+			int GetHashCode( ) override
+			{
+				int hash = this->X.GetHashCode( );
+				hash = HashCodeHelper::CombineHashCodes(hash, this->Y.GetHashCode( ));
+				hash = HashCodeHelper::CombineHashCodes(hash, this->Z.GetHashCode( ));
+
+				return hash;
+			}
+
+			/// <summary>
+			/// Determines whether the specified object is equal to this Vector3 instance.
+			/// </summary>
+			/// <params>
+			/// <param name="obj">The Object to compare against.</param>
+			/// </params>
+			/// <returns>True if the Object is equal to this Vector3; False otherwise.</returns>
 			bool Equals(Object^ obj) override
 			{
 				if (dynamic_cast<Vector3^>(obj) == nullptr)
@@ -169,23 +201,49 @@ namespace MyoNet
 				return Equals(static_cast<Vector3>(obj));
 			}
 
+			/// <summary>
+			/// Determines whether the specified Vector3 is equal to this Vector3 instance.
+			/// </summary>
+			/// <params>
+			/// <param name="other">The Vector3 to compare against.</param>
+			/// </params>
+			/// <returns>True if the Vector3 is equal to this Vector3; False otherwise.</returns>
 			virtual bool Equals(Vector3 other)
 			{
-				return this->X == other.X
-					&& this->Y == other.Y
-					&& this->Z == other.Z;
+				return this->X.Equals(other.X)
+					&& this->Y.Equals(other.Y)
+					&& this->Z.Equals(other.Z);
 			}
 
+			/// <summary>
+			/// Returns a String representing this Vector3 instance.
+			/// </summary>
+			/// <returns>The string representation</returns>
 			virtual String^ ToString( ) override
 			{
 				return ToString("G", CultureInfo::CurrentCulture);
 			}
 
+			/// <summary>
+			/// Returns a String representing this Vector3 instance, using the specified format.
+			/// </summary>
+			/// <params>
+			/// <param name="format">The format of the individual elements.</param>
+			/// </params>
+			/// <returns>The string representation</returns>
 			String^ ToString(String^ format)
 			{
 				return ToString(format, CultureInfo::CurrentCulture);
 			}
 
+			/// <summary>
+			/// Returns a String representing this Vector3 instance, using the specified format and a IFormatProvider.
+			/// </summary>
+			/// <params>
+			/// <param name="format">The format of the individual elements.</param>
+			/// <param name="formatProvider">The format provider used to format individual elements.</param>
+			/// </params>
+			/// <returns>The string representation</returns>
 			virtual String^ ToString(String^ format, IFormatProvider^ formatProvider)
 			{
 				StringBuilder^ sb = gcnew StringBuilder( );
