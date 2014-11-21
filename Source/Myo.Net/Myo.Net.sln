@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{9A6C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMyo", "..\..\Samples\HelloMyo\HelloMyo.csproj", "{8BD494B3-0485-449E-A601-A6868F147D81}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Myo.Net.Interop", "Myo.Net.Interop\Myo.Net.Interop.vcxproj", "{C64A2045-6E49-4973-8324-00341C0C92EA}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Myo.Net.v20", "Myo.Net\Myo.Net.v20.vcxproj", "{7921225C-BA3A-480C-8F91-AEA65A62CADB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Myo.Net.v40", "Myo.Net\Myo.Net.v40.vcxproj", "{74C77080-4BEA-441A-94B2-ECF92188945F}"
@@ -46,22 +44,6 @@ Global
 		{8BD494B3-0485-449E-A601-A6868F147D81}.Release|x64.Build.0 = Release|x64
 		{8BD494B3-0485-449E-A601-A6868F147D81}.Release|x86.ActiveCfg = Release|x86
 		{8BD494B3-0485-449E-A601-A6868F147D81}.Release|x86.Build.0 = Release|x86
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Debug|Win32.ActiveCfg = Debug|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Debug|Win32.Build.0 = Debug|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Debug|x64.ActiveCfg = Debug|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Debug|x86.ActiveCfg = Debug|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Debug|x86.Build.0 = Debug|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Release|Any CPU.ActiveCfg = Release|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Release|Win32.ActiveCfg = Release|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Release|Win32.Build.0 = Release|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Release|x64.ActiveCfg = Release|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Release|x86.ActiveCfg = Release|Win32
-		{C64A2045-6E49-4973-8324-00341C0C92EA}.Release|x86.Build.0 = Release|Win32
 		{7921225C-BA3A-480C-8F91-AEA65A62CADB}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{7921225C-BA3A-480C-8F91-AEA65A62CADB}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{7921225C-BA3A-480C-8F91-AEA65A62CADB}.Debug|Mixed Platforms.Build.0 = Debug|Win32

@@ -180,6 +180,7 @@
     <ClCompile Include="Source\Arm.cpp" />
     <ClCompile Include="Source\AssemblyInfo.cpp" />
     <ClCompile Include="Source\GyroscopeDataEventArgs.cpp" />
+    <ClCompile Include="Source\HashCodeHelper.cpp" />
     <ClCompile Include="Source\Hub.cpp" />
     <ClCompile Include="Source\Myo.cpp" />
     <ClCompile Include="Source\MyoEventArgs.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Include\AccelerometerDataEventArgs.hpp" />
     <ClInclude Include="Include\Arm.hpp" />
     <ClInclude Include="Include\GyroscopeDataEventArgs.hpp" />
+    <ClInclude Include="Include\HashCodeHelper.hpp" />
     <ClInclude Include="Include\Hub.hpp" />
     <ClInclude Include="Include\Myo.hpp" />
     <ClInclude Include="Include\MyoEventArgs.hpp" />

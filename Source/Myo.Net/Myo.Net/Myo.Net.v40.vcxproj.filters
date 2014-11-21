@@ -81,6 +81,9 @@
     <ClCompile Include="Source\PoseChangedEventArgs.cpp">
       <Filter>Source Files\Myo\Event</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HashCodeHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Stdafx.h">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="Include\PoseChangedEventArgs.hpp">
       <Filter>Header Files\Myo\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\HashCodeHelper.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
