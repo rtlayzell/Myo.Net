@@ -14,8 +14,7 @@ namespace MyoNet
 {
 	namespace Myo
 	{
-		///<summary>A Hub provides access to one or more Myo instances.</summary>
-		///<summary></summary>
+		/// <summary>A Hub provides access to one or more Myo instances.</summary>
 		public ref class Hub
 		{
 		private:
@@ -35,9 +34,9 @@ namespace MyoNet
 			}
 
 		public:
-			///<summary>
+			/// <summary>
 			/// Initializes a new instance of <see cref="Hub"/>
-			///</summary>
+			/// </summary>
 			Hub( );
 
 			/// <summary>
@@ -46,81 +45,84 @@ namespace MyoNet
 			/// <param name="applicationIdentifier">The application identifier.</param>
 			Hub(String^ applicationIdentifier);
 
-			///<summary>
+			/// <summary>
 			/// Deallocate any resources associated with a Hub.
-			///</summary>
+			/// </summary>
 			~Hub( );
 
-			///<summary>
+			/// <summary>
 			/// Wait for a Myo to become paired.
-			///</summary>
+			/// </summary>
 			IMyo^ WaitForMyo( );
 
-			///<summary>
+			/// <summary>
 			/// Wait for a Myo to become paired, or time out after <paramref name="timeout"/>. 
-			///</summary>
+			/// </summary>
 			/// <param name="timeout">The amount of time to wait until time out occurs.</param>
 			IMyo^ WaitForMyo(TimeSpan timeout);
 
+#if defined NETFX_40
 			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			System::Threading::Tasks::Task<IMyo^>^ WaitForMyoAsync(TimeSpan timeout); // not implemented.
+#endif
 
-			///<summary>
+			/// <summary>
 			/// Run the event loop.
-			///</summary>
+			/// </summary>
 			void Run( );
 
-			///<summary>
+			/// <summary>
 			/// Run the event loop until a single event occurs. 
-			///</summary>
+			/// </summary>
 			void RunOnce( );
 
-			///<summary>
+			/// <summary>
 			/// Run the event loop for the specified <paramref name="duration" />. 
-			///</summary>
+			/// </summary>
 			/// <param name="duration">The amount of time to run the event loop.</param>
 			void Run(TimeSpan duration);
 
-			///<summary>
+			/// <summary>
 			/// Run the event loop until a single event occurs, or the specified <paramref name="duration"/> has elapsed. 
-			///</summary>
+			/// </summary>
 			/// <param name="duration">The amount of time to run the event loop.</param>
 			void RunOnce(TimeSpan duration);
 
+#if defined NETFX_40
 			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			System::Threading::Tasks::Task^ RunAsync(TimeSpan duration); // not implemented.
 
 			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			System::Threading::Tasks::Task^ RunOnceAsync(TimeSpan duration); // not implemented.
-
-			///<summary>
+#endif
+			/// <summary>
 			/// Occurs when a paired Myo has been connected. 
-			///</summary>
+			/// </summary>
 			event EventHandler<MyoEventArgs^>^ MyoConnected;
 
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has been disconnected. 
-			///</summary>
+			/// </summary>
 			event EventHandler<MyoEventArgs^>^ MyoDisconnected;
 			
-			///<summary>
+			/// <summary>
 			/// Occurs when a Myo has been paired. 
-			///</summary>
+			/// </summary>
 			event EventHandler<MyoEventArgs^>^ MyoPaired;
 
-			///<summary>
+			/// <summary>
 			/// Occurs when a Myo has been unpaired. 
-			///</summary>
+			/// </summary>
 			event EventHandler<MyoEventArgs^>^ MyoUnpaired;
 
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo recognizes that it is on an arm. 
-			///</summary>
+			/// </summary>
 			event EventHandler<RecognizedArmEventArgs^>^ RecognizedArm;
 
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo recognizes that it is on an arm. 
-			///</summary>
+			/// </summary>
 			event EventHandler<MyoEventArgs^>^ LostArm;
 		};
 	}
