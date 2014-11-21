@@ -6,9 +6,9 @@ namespace MyoNet
 {
 	namespace Myo
 	{
-		///<summary>
+		/// <summary>
 		/// Structure that represents a rotation in three dimensions.
-		///</summary>
+		/// </summary>
 		[System::Diagnostics::DebuggerDisplayAttribute("\\{X={X}, Y={Y}, Z={Z}, W={W}\\}")]
 		[System::Runtime::InteropServices::StructLayoutAttribute(System::Runtime::InteropServices::LayoutKind::Explicit)]
 		public value struct Quaternion sealed
@@ -20,129 +20,129 @@ namespace MyoNet
 			[System::Runtime::InteropServices::FieldOffsetAttribute(24)] double _w;
 
 		public:
-			///<summary>
+			/// <summary>
 			/// Represents a quaternion that has X, Y, Z and W values set to zero.
-			///</summary>
+			/// </summary>
 			static initonly Quaternion Zero = Quaternion(0, 0, 0, 0);
 
-			///<summary>
+			/// <summary>
 			/// Gets or sets the x component of the <see cref="Quaternion"/>.
-			///</summary>
+			/// </summary>
 			property double X 
 			{ 
 				double get( ) { return _x; } 
 				void set(double value) { _x = value; } 
 			}
 			
-			///<summary>
+			/// <summary>
 			/// Gets or sets the y component of the <see cref="Quaternion"/>.
-			///</summary>
+			/// </summary>
 			property double Y 
 			{
 				double get( ) { return _y; } 
 				void set(double value) { _y = value; }
 			}
 			
-			///<summary>
+			/// <summary>
 			/// Gets or sets the z component of the <see cref="Quaternion"/>.
-			///</summary>
+			/// </summary>
 			property double Z 
 			{ 
 				double get( ) { return _z; } 
 				void set(double value) { _z = value; } 
 			}
 			
-			///<summary>
+			/// <summary>
 			/// Gets or sets the w component of the <see cref="Quaternion"/>.
-			///</summary>
+			/// </summary>
 			property double W 
 			{ 
 				double get( ) { return _w; } 
 				void set(double value) { _w = value; } 
 			}
 
-			///<summary>
+			/// <summary>
 			/// Initializes a new instance of the <see cref="Quaternion"/> with the specified components.
-			///</summary>
-			///<params>
-			///<param name="x">The x component of the <see cref="Quaternion"/>.</param>
-			///<param name="y">The y component of the <see cref="Quaternion"/>.</param>
-			///<param name="z">The z component of the <see cref="Quaternion"/>.</param>
-			///<param name="w">The w component of the <see cref="Quaternion"/>.</param>
-			///</params>
+			/// </summary>
+			/// <params>
+			/// <param name="x">The x component of the <see cref="Quaternion"/>.</param>
+			/// <param name="y">The y component of the <see cref="Quaternion"/>.</param>
+			/// <param name="z">The z component of the <see cref="Quaternion"/>.</param>
+			/// <param name="w">The w component of the <see cref="Quaternion"/>.</param>
+			/// </params>
 			Quaternion(double x, double y, double z, double w);
 
-			///<summary>
+			/// <summary>
 			/// Get or set a component in the <see cref="Quaternion"/> by index.
-			///</summary>
+			/// </summary>
 			property double default[int] 
 			{
 				double get(int index) { return *(&_x + index); }
 				void set(int index, double value) { *(&_x + index) = value; }
 			}
 
-			///<summary>
+			/// <summary>
 			/// Gets the length of the <see cref="Quaternion"/>
-			///</summary>
-			///<returns>The length of the <see cref="Quaternion"/>.</returns>
+			/// </summary>
+			/// <returns>The length of the <see cref="Quaternion"/>.</returns>
 			double Length( ) { return Math::Sqrt(this->LengthSquared( )); }
 
-			///<summary>
+			/// <summary>
 			/// Gets the length squared of the <see cref="Quaternion"/>
-			///</summary>
-			///<returns>The squared length of the <see cref="Quaternion"/>.</returns>
+			/// </summary>
+			/// <returns>The squared length of the <see cref="Quaternion"/>.</returns>
 			double LengthSquared( ) { return X * X + Y * Y + Z * Z + W * W; }
 
-			///<summary>
+			/// <summary>
 			/// Calculate the roll angle represented by the given unit <see cref="Quaternion"/>.
-			///</summary>
-			///<params>
-			///<param name="quat">A unit <see cref="Quaternion"/>.</param>
-			///</params>
-			///<returns>The roll angle in radians.</returns>
+			/// </summary>
+			/// <params>
+			/// <param name="quat">A unit <see cref="Quaternion"/>.</param>
+			/// </params>
+			/// <returns>The roll angle in radians.</returns>
 			static double Roll(Quaternion quat);
 			
-			///<summary>
+			/// <summary>
 			/// Calculate the pitch angle represented by the given unit <see cref="Quaternion"/>.
-			///</summary>
-			///<params>
-			///<param name="quat">A unit <see cref="Quaternion"/>.</param>
-			///</params>
-			///<returns>The pitch angle in radians.</returns>
+			/// </summary>
+			/// <params>
+			/// <param name="quat">A unit <see cref="Quaternion"/>.</param>
+			/// </params>
+			/// <returns>The pitch angle in radians.</returns>
 			static double Pitch(Quaternion quat);
 			
-			///<summary>
+			/// <summary>
 			/// Calculate the yaw angle represented by the given unit <see cref="Quaternion"/>.
-			///</summary>
-			///<params>
-			///<param name="quat">A unit <see cref="Quaternion"/>.</param>
-			///</params>
-			///<returns>The yaw angle in radians.</returns>
+			/// </summary>
+			/// <params>
+			/// <param name="quat">A unit <see cref="Quaternion"/>.</param>
+			/// </params>
+			/// <returns>The yaw angle in radians.</returns>
 			static double Yaw(Quaternion quat);
 
-			///<summary>
+			/// <summary>
 			/// Adds the specified <see cref="Quaternion"/>'s.
-			///</summary>
+			/// </summary>
 			static Quaternion operator + (Quaternion lhs, Quaternion rhs);
 
-			///<summary>
+			/// <summary>
 			/// Subtracts a <see cref="Quaternion"/> from another.
-			///</summary>
+			/// </summary>
 			static Quaternion operator - (Quaternion lhs, Quaternion rhs);
 
-			///<summary>
+			/// <summary>
 			/// Multiplies the specified <see cref="Quaternion"/>'s.
-			///</summary>
+			/// </summary>
 			static Quaternion operator * (Quaternion lhs, Quaternion rhs);
 
-			///<summary>
+			/// <summary>
 			/// Gets the inverse of the <see cref="Quaternion"/>.
-			///</summary>
+			/// </summary>
 			Quaternion Inverse( );
 
-			///<summary>
+			/// <summary>
 			/// Return a new unit <see cref="Quaternion"/> corresponding to the same rotation as this one.
-			///</summary>
+			/// </summary>
 			Quaternion Normalized( );
 		};
 	}

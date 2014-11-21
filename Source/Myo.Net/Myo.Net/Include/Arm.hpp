@@ -7,9 +7,9 @@ namespace MyoNet
 {
 	namespace Myo
 	{
-		///<summary>
+		/// <summary>
 		/// Enumeration identifying a right arm or left arm.
-		///</summary>
+		/// </summary>
 		public enum class Arm
 		{
 			Left = libmyo_arm_left,
@@ -17,9 +17,9 @@ namespace MyoNet
 			Unknown = libmyo_arm_unknown,
 		};
 
-		///<summary>
+		/// <summary>
 		/// Possible directions for Myo's +x axis relative to a user's arm.
-		///</summary>
+		/// </summary>
 		public enum class XDirection
 		{
 			TowardWrist = libmyo_x_direction_toward_wrist,

@@ -17,20 +17,20 @@ namespace MyoNet
 			DateTimeOffset _timeStamp;
 
 		public:
-			///<summary>
+			/// <summary>
 			/// Initializes a new instance of <see cref="MyoEventArgs"/>.
-			///</summary>
+			/// </summary>
 			MyoEventArgs(IMyo^ myo, DateTimeOffset timeStamp)
 				: _myo(myo), _timeStamp(timeStamp) { }
 			
-			///<summary>
+			/// <summary>
 			/// Gets the <see cref="IMyo"/> associated with the event.
-			///</summary>
+			/// </summary>
 			property IMyo^ Myo { IMyo^ get( ) { return this->_myo; } }
 
-			///<summary>
+			/// <summary>
 			/// Gets the time stamp at which the event occurred.
-			///</summary>
+			/// </summary>
 			property DateTimeOffset TimeStamp{ DateTimeOffset get( ) { return this->_timeStamp; } }
 		};
 

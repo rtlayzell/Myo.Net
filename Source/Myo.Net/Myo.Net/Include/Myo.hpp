@@ -17,9 +17,9 @@ namespace MyoNet
 {
 	namespace Myo
 	{
-		///<summary>
+		/// <summary>
 		/// Types of vibration supported by the Myo. 
-		///</summary>
+		/// </summary>
 		public enum class VibrationType
 		{
 			Short,
@@ -27,36 +27,36 @@ namespace MyoNet
 			Long,
 		};
 
-		///<summary>
+		/// <summary>
 		/// Structure representing the firmware version of Myo.
-		///</summary>
+		/// </summary>
 		public value struct FirmwareVersion sealed
 		{
-			///<summary>
+			/// <summary>
 			/// Myo's major version must match the required major version.
-			///</summary>
+			/// </summary>
 			initonly unsigned int FirmwareVersionMajor;
 			
-			///<summary>
+			/// <summary>
 			/// Myo's minor version must match the required minor version.
-			///</summary>
+			/// </summary>
 			initonly unsigned int FirmwareVersionMinor;
 			
-			///<summary>
+			/// <summary>
 			/// Myo's patch version must greater or equal to the required patch version.
-			///</summary>
+			/// </summary>
 			initonly unsigned int FirmwareVersionPatch; 
 			
-			///<summary>
+			/// <summary>
 			/// Myo's hardware revision; not used to detect firmware version mismatch.
-			///</summary>
+			/// </summary>
 			initonly unsigned int FirmwareVersionHardwareRev;
 
 		internal:
 
-			///<summary>
+			/// <summary>
 			/// Initializes a new instance of <see cref="FirmwareVersion"/> with specified integers.
-			///</summary>
+			/// </summary>
 			FirmwareVersion(unsigned int major, unsigned int minor, unsigned int patch, unsigned int revision)
 				: FirmwareVersionMajor(major)
 				, FirmwareVersionMinor(minor)
@@ -73,72 +73,72 @@ namespace MyoNet
 			}
 		};
 
-		///<summary>
+		/// <summary>
 		/// Interface to a instance of a Myo device.
-		///</summary>
+		/// </summary>
 		public interface class IMyo : public IDisposable
 		{
-			///<summary>
+			/// <summary>
 			/// Gets the assigned name of the <see cref="Myo"/>.
-			///</summary>
+			/// </summary>
 			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			[System::Diagnostics::DebuggerBrowsableAttribute(System::Diagnostics::DebuggerBrowsableState::Never)]
 			property String^ Name { String^ get( ); }
 			
-			///<summary>
+			/// <summary>
 			/// Gets the Mac Address of the <see cref="Myo"/>.
-			///</summary>
+			/// </summary>
 			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			[System::Diagnostics::DebuggerBrowsableAttribute(System::Diagnostics::DebuggerBrowsableState::Never)]
 			property String^ MacAddress { String^ get( ); }
 			
-			///<summary>
+			/// <summary>
 			/// Gets the <see cref="FirmwareVersion"/> of the <see cref="Myo"/>.
-			///</summary>
+			/// </summary>
 			property MyoNet::Myo::FirmwareVersion^ FirmwareVersion { MyoNet::Myo::FirmwareVersion^ get( ); }
 
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has provided new orientation data. 
-			///</summary>
+			/// </summary>
 			event EventHandler<OrientationDataEventArgs^>^ OrientationDataAcquired;
 			
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has provided new accelerometer data in units of g.
-			///</summary>
+			/// </summary>
 			event EventHandler<AccelerometerDataEventArgs^>^ AccelerometerDataAcquired;
 			
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has provided new gyroscope data in units of deg/s. 
-			///</summary>
+			/// </summary>
 			event EventHandler<GyroscopeDataEventArgs^>^ GyroscopeDataAquired;
 			
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has provided a new RSSI value.
-			///</summary>
+			/// </summary>
 			event EventHandler<RssiDataEventArgs^>^ Rssi;
 			
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has provided a new pose. 
-			///</summary>
+			/// </summary>
 			event EventHandler<PoseChangedEventArgs^>^ PoseChanged;
 			
-			///<summary>
+			/// <summary>
 			/// Engage the Myo's built in vibration motor.
-			///</summary>
-			///<params>
-			///<param name="type">The type of vibration.</param>
-			///</params>
+			/// </summary>
+			/// <params>
+			/// <param name="type">The type of vibration.</param>
+			/// </params>
 			void Vibrate(VibrationType type);
 			
-			///<summary>
+			/// <summary>
 			/// Request the RSSI of the Myo.
-			///</summary>
+			/// </summary>
 			void RequestRssi( );
 		};
 
-		///<summary>
+		/// <summary>
 		/// Represents a physical MyoNet Labs(TM) Myo(TM) Device.
-		///</summary>
+		/// </summary>
 		private ref class Myo : public IMyo
 		{
 		private:
@@ -155,67 +155,67 @@ namespace MyoNet
 			libmyo_myo_t _libmyoObject( ) { return _myo; }
 
 		public:
-			///<summary>
+			/// <summary>
 			/// Initializes a new instance of <see cref="Myo"/>.
-			///</summary>
+			/// </summary>
 			Myo(libmyo_myo_t opaque);
 			~Myo( );
 
-			///<summary>
+			/// <summary>
 			/// Gets the assigned name of the <see cref="Myo"/>.
-			///</summary>
+			/// </summary>
 			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			[System::Diagnostics::DebuggerBrowsableAttribute(System::Diagnostics::DebuggerBrowsableState::Never)]
 			virtual property String^ Name { String^ get( ) { throw gcnew NotImplementedException( ); } }
 			
-			///<summary>
+			/// <summary>
 			/// Gets the Mac Address of the <see cref="Myo"/>.
-			///</summary>
+			/// </summary>
 			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			[System::Diagnostics::DebuggerBrowsableAttribute(System::Diagnostics::DebuggerBrowsableState::Never)]
 			virtual property String^ MacAddress { String^ get( ) { throw gcnew NotImplementedException( ); } }
 			
-			///<summary>
+			/// <summary>
 			/// Gets the <see cref="FirmwareVersion"/> of the <see cref="Myo"/>.
-			///</summary>
+			/// </summary>
 			virtual property MyoNet::Myo::FirmwareVersion^ FirmwareVersion { MyoNet::Myo::FirmwareVersion^ get( ) { return _firmware; } }
 
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has provided new orientation data. 
-			///</summary>
+			/// </summary>
 			virtual event EventHandler<OrientationDataEventArgs^>^ OrientationDataAcquired;
 			
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has provided new accelerometer data in units of g.
-			///</summary>
+			/// </summary>
 			virtual event EventHandler<AccelerometerDataEventArgs^>^ AccelerometerDataAcquired;
 			
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has provided new gyroscope data in units of deg/s. 
-			///</summary>
+			/// </summary>
 			virtual event EventHandler<GyroscopeDataEventArgs^>^ GyroscopeDataAquired;
 			
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has provided a new RSSI value.
-			///</summary>
+			/// </summary>
 			virtual event EventHandler<RssiDataEventArgs^>^ Rssi;
 			
-			///<summary>
+			/// <summary>
 			/// Occurs when a paired Myo has provided a new pose. 
-			///</summary>
+			/// </summary>
 			virtual event EventHandler<PoseChangedEventArgs^>^ PoseChanged;
 			
-			///<summary>
+			/// <summary>
 			/// Engage the Myo's built in vibration motor.
-			///</summary>
-			///<params>
-			///<param name="type">The type of vibration.</param>
-			///</params>
+			/// </summary>
+			/// <params>
+			/// <param name="type">The type of vibration.</param>
+			/// </params>
 			virtual void Vibrate(VibrationType type);
 			
-			///<summary>
+			/// <summary>
 			/// Request the RSSI of the Myo.
-			///</summary>
+			/// </summary>
 			virtual void RequestRssi( );
 		};
 	}

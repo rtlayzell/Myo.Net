@@ -7,9 +7,9 @@ namespace MyoNet
 {
 	namespace Myo
 	{
-		///<summary>
+		/// <summary>
 		/// Types of poses supported by the SDK. 
-		///</summary>
+		/// </summary>
 		public enum class Pose
 		{
 			Rest = libmyo_pose_rest,
