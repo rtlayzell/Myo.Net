@@ -62,7 +62,7 @@ namespace MyoNet
 			IMyo^ WaitForMyo(TimeSpan timeout);
 
 #if defined NETFX_40
-			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
+			//[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			System::Threading::Tasks::Task<IMyo^>^ WaitForMyoAsync(TimeSpan timeout); // not implemented.
 #endif
 
@@ -89,10 +89,10 @@ namespace MyoNet
 			void RunOnce(TimeSpan duration);
 
 #if defined NETFX_40
-			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
+			//[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			System::Threading::Tasks::Task^ RunAsync(TimeSpan duration); // not implemented.
 
-			[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
+			//[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			System::Threading::Tasks::Task^ RunOnceAsync(TimeSpan duration); // not implemented.
 #endif
 			/// <summary>

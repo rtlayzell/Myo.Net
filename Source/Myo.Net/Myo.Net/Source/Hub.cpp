@@ -128,6 +128,7 @@ namespace MyoNet
 					return libmyo_handler_continue;
 				}
 			};
+
 			GCHandle hub_handle = GCHandle::Alloc(_hub);
 			IntPtr pointer = GCHandle::ToIntPtr(hub_handle);
 
@@ -136,8 +137,7 @@ namespace MyoNet
 				libmyo_error_details_t err = 0;
 				libmyo_run(_hub->_libmyoObject(), duration_ms, &local::handler, pointer.ToPointer(), &err);
 				ThrowHelper::ThrowOnError(err);
-			}
-			finally { hub_handle.Free( ); }
+			} finally { hub_handle.Free( ); }
 		}
 
 		void run_once_impl(Hub^ _hub, unsigned int duration_ms)
@@ -162,8 +162,7 @@ namespace MyoNet
 				libmyo_error_details_t err = 0;
 				libmyo_run(_hub->_libmyoObject( ), duration_ms, &local::handler, pointer.ToPointer( ), &err);
 				ThrowHelper::ThrowOnError(err);
-			}
-			finally { hub_handle.Free( ); }
+			} finally { hub_handle.Free( ); }
 		}
 
 		IMyo^ wait_for_myo_impl(Hub^ _hub, unsigned int timeout_ms)
@@ -225,8 +224,34 @@ namespace MyoNet
 		}
 
 #if defined NETFX_40
-		System::Threading::Tasks::Task<IMyo^>^ Hub::WaitForMyoAsync(TimeSpan timeout){
-			throw gcnew NotImplementedException( );
+
+		ref class WaitForMyoAsyncHelper
+		{
+		private:
+			Hub^ _object;
+			TimeSpan _timeSpan;
+
+			WaitForMyoAsyncHelper(Hub^ object, TimeSpan timeSpan)
+				: _object(object), _timeSpan(timeSpan) { }
+
+			IMyo^ Execute( ) { return _object->WaitForMyo(_timeSpan); }
+
+		public:
+			static System::Func<IMyo^>^ Create(Hub^ object, TimeSpan timeSpan)
+			{
+				return gcnew Func<IMyo^>(
+					gcnew WaitForMyoAsyncHelper(object, timeSpan), 
+					&WaitForMyoAsyncHelper::Execute);
+			}
+		};
+
+		System::Threading::Tasks::Task<IMyo^>^ Hub::WaitForMyoAsync(TimeSpan timeout)
+		{
+			return System::Threading::Tasks::Task<IMyo^>::Factory->StartNew(
+				WaitForMyoAsyncHelper::Create(this, timeout),
+				System::Threading::CancellationToken::None,
+				System::Threading::Tasks::TaskCreationOptions::None,
+				System::Threading::Tasks::TaskScheduler::Default);
 		}
 #endif
 
@@ -238,6 +263,8 @@ namespace MyoNet
 		void Hub::RunOnce( )
 		{
 			run_once_impl(this, 0);
+			#if defined NETFX_40
+			#endif
 		}
 
 		void Hub::Run(TimeSpan duration)
@@ -253,12 +280,64 @@ namespace MyoNet
 		}
 
 #if defined NETFX_40
-		System::Threading::Tasks::Task^ Hub::RunAsync(TimeSpan duration) {
-			throw gcnew NotImplementedException( );
+
+		ref class RunAsyncHelper
+		{
+		private:
+			Hub^ _object;
+			TimeSpan _duration;
+
+			RunAsyncHelper(Hub^ object, TimeSpan duration)
+				: _object(object), _duration(duration) { }
+
+			void Execute( ) { return _object->Run(_duration); }
+
+		public:
+			static System::Action^ Create(Hub^ object, TimeSpan duration)
+			{
+				return gcnew Action(
+					gcnew RunAsyncHelper(object, duration), 
+					&RunAsyncHelper::Execute);
+			}
+		};
+
+		// something needs to be done about this bloat.... damn lambdas so useful..
+		ref class RunOnceAsyncHelper
+		{
+		private:
+			Hub^ _object;
+			TimeSpan _duration;
+
+			RunOnceAsyncHelper(Hub^ object, TimeSpan duration)
+				: _object(object), _duration(duration) { }
+
+			void Execute( ) { return _object->RunOnce(_duration); }
+
+		public:
+			static System::Action^ Create(Hub^ object, TimeSpan duration)
+			{
+				return gcnew Action(
+					gcnew RunOnceAsyncHelper(object, duration), 
+					&RunOnceAsyncHelper::Execute);
+			}
+		};
+
+		System::Threading::Tasks::Task^ Hub::RunAsync(TimeSpan duration)
+		{
+			return System::Threading::Tasks::Task::Factory->StartNew(
+				RunAsyncHelper::Create(this, duration),
+				System::Threading::CancellationToken::None,
+				System::Threading::Tasks::TaskCreationOptions::None,
+				System::Threading::Tasks::TaskScheduler::Default);
 		}
 
-		System::Threading::Tasks::Task^ Hub::RunOnceAsync(TimeSpan duration) {
-			throw gcnew NotImplementedException( );
+		System::Threading::Tasks::Task^ Hub::RunOnceAsync(TimeSpan duration) 
+		{
+			return System::Threading::Tasks::Task::Factory->StartNew(
+				RunOnceAsyncHelper::Create(this, duration),
+				System::Threading::CancellationToken::None,
+				System::Threading::Tasks::TaskCreationOptions::None,
+				System::Threading::Tasks::TaskScheduler::Default);
 		}
 #endif
 	}
