@@ -204,6 +204,7 @@
   <ItemGroup>
     <ClInclude Include="Include\AccelerometerDataEventArgs.hpp" />
     <ClInclude Include="Include\Arm.hpp" />
+    <ClInclude Include="Include\FirmwareVersion.hpp" />
     <ClInclude Include="Include\GyroscopeDataEventArgs.hpp" />
     <ClInclude Include="Include\HashCodeHelper.hpp" />
     <ClInclude Include="Include\Hub.hpp" />

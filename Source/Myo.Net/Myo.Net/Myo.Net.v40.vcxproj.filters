@@ -134,5 +134,8 @@
     <ClInclude Include="Include\HashCodeHelper.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Include\FirmwareVersion.hpp">
+      <Filter>Header Files\Myo</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
