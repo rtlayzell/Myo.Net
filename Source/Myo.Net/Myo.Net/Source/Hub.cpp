@@ -6,6 +6,7 @@
 
 #include "Hub.hpp"
 #include "ThrowOnError.hpp"
+#include "FirmwareVersion.hpp"
 
 namespace MyoNet
 {
@@ -22,10 +23,25 @@ namespace MyoNet
 			return version;
 		}
 
-		Hub::Hub() : Hub("") { 
+		::MyoNet::Myo::LockingPolicy Hub::LockingPolicy::get( )
+		{
+			return _lockPolicy;
 		}
+
+		void Hub::LockingPolicy::set(::MyoNet::Myo::LockingPolicy value)
+		{
+			libmyo_error_details_t err;
+			libmyo_set_locking_policy(_hub, 
+				static_cast<libmyo_locking_policy_t>(value), &err);
+			ThrowHelper::ThrowOnError(err);
+			_lockPolicy = value;
+		}
+
+
+		Hub::Hub() : Hub("") { }
 		
-		Hub::Hub(String^ applicationIdentifier) :_hub(0), _myos(nullptr) {
+		Hub::Hub(String^ applicationIdentifier) :_hub(0), _myos(nullptr) 
+		{
 			cli::pin_ptr<libmyo_hub_t> pinned_hub = &_hub;
 
 			libmyo_error_details_t err = 0;
@@ -35,7 +51,8 @@ namespace MyoNet
 			_myos = gcnew System::Collections::Generic::List<IMyo^>( );
 		}
 
-		Hub::~Hub( ) {
+		Hub::~Hub( ) 
+		{
 			libmyo_error_details_t err = 0;
 			libmyo_shutdown_hub(_hub, &err);
 			ThrowHelper::ThrowOnError(err);
@@ -78,7 +95,12 @@ namespace MyoNet
 				return;
 			}
 
-			uint64_t time = libmyo_event_get_timestamp(ev);
+			//uint64_t time = libmyo_event_get_timestamp(ev);
+
+			// The libmyo SDK produces a timestamp without any known point of origin.
+			// This to me, and probably others, is useless without some calibration
+			// on the part of the user.  Instead of the libmyo timestamp a DateTimeOffset
+			// is retrieved here and used in its place.
 			DateTimeOffset dtime = DateTimeOffset::Now;
 
 			switch (libmyo_event_get_type(ev))
@@ -100,19 +122,8 @@ namespace MyoNet
 			case libmyo_event_disconnected:
 				this->MyoDisconnected(this, gcnew MyoEventArgs(myo, dtime));
 				break;
-
-			case libmyo_event_arm_synced:
-				this->RecognizedArm(this, gcnew RecognizedArmEventArgs(myo, dtime, 
-					static_cast<Arm>(libmyo_event_get_arm(ev)),
-					static_cast<XDirection>(libmyo_event_get_x_direction(ev))));
-				break;
-
-			case libmyo_event_arm_unsynced:
-				this->LostArm(this, gcnew MyoEventArgs(myo, dtime));
-				break;
 			}
 
-			// could include a "handled" event mechanism here to stop the Myo device from recieving events.
 			((Myo^)myo)->_OnDeviceEvent(ev);
 		}
 
@@ -278,6 +289,8 @@ namespace MyoNet
 			if ((unsigned int)duration.TotalMilliseconds == 0) return; // throw here instead.
 			run_once_impl(this, (unsigned int)duration.TotalMilliseconds);
 		}
+
+
 
 #if defined NETFX_40
 
