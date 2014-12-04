@@ -137,5 +137,11 @@
     <ClInclude Include="Include\FirmwareVersion.hpp">
       <Filter>Header Files\Myo</Filter>
     </ClInclude>
+    <ClInclude Include="Include\IHub.hpp">
+      <Filter>Header Files\Myo\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\IMyo.hpp">
+      <Filter>Header Files\Myo\Device</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

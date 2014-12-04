@@ -208,6 +208,8 @@
     <ClInclude Include="Include\GyroscopeDataEventArgs.hpp" />
     <ClInclude Include="Include\HashCodeHelper.hpp" />
     <ClInclude Include="Include\Hub.hpp" />
+    <ClInclude Include="Include\IHub.hpp" />
+    <ClInclude Include="Include\IMyo.hpp" />
     <ClInclude Include="Include\Myo.hpp" />
     <ClInclude Include="Include\MyoEventArgs.hpp" />
     <ClInclude Include="Include\OrientationDataEventArgs.hpp" />
