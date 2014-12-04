@@ -1,4 +1,5 @@
 
+#
 #pragma once
 
 #include "myo/cxx/Pose.hpp"
@@ -17,8 +18,9 @@ namespace MyoNet
 			WaveIn = libmyo_pose_wave_in,
 			WaveOut = libmyo_pose_wave_out,
 			FingersSpread = libmyo_pose_fingers_spread,
-			Reserved1 = libmyo_pose_reserved1,
-			ThumbToPinky = libmyo_pose_thumb_to_pinky,
+			//Reserved1 = libmyo_pose_reserved1,
+			//ThumbToPinky = libmyo_pose_thumb_to_pinky,
+			DoubleTap = libmyo_pose_double_tap,
 			Unknown = libmyo_pose_unknown,
 		};
 	}
