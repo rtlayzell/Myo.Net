@@ -84,8 +84,6 @@ namespace MyoNet
 			libmyo_error_details_t err = 0;
 			libmyo_vibrate(_myo, static_cast<libmyo_vibration_type_t>(type), &err);
 			ThrowHelper::ThrowOnError(err);
-
-			libmyo
 		}
 
 		void Myo::RequestRssi( )
