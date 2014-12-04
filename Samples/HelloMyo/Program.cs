@@ -28,12 +28,12 @@ namespace HelloMyo
 					Console.WriteLine("Connected to a Myo armband!\n");
 
 					hub.MyoUnpaired += OnUnpair;
-					hub.RecognizedArm += OnRecognizedArm;
-					hub.LostArm += OnLostArm;
 
 					myo.PoseChanged += OnPoseChanged;
 					myo.OrientationDataAcquired += OnOrientationData;
-
+					myo.RecognizedArm += OnRecognizedArm;
+					myo.LostArm += OnLostArm;
+					
 					while (true)
 					{
 						hub.Run(TimeSpan.FromMilliseconds(1000 / 20));
