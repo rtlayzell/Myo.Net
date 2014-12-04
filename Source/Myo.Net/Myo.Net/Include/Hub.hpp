@@ -14,6 +14,12 @@ namespace MyoNet
 {
 	namespace Myo
 	{
+		public enum class LockingPolicy
+		{
+			None = libmyo_locking_policy_none,
+			Standard = libmyo_locking_policy_standard,
+		};
+
 		/// <summary>A Hub provides access to one or more Myo instances.</summary>
 		public ref class Hub
 		{
@@ -21,6 +27,8 @@ namespace MyoNet
 			libmyo_hub_t _hub;
 			System::Collections::Generic::List<IMyo^>^ _myos;
 
+			LockingPolicy _lockPolicy;	// stored because libmyo does not provide a way to retrieve 
+										// the current locking policy.
 
 		internal:
 			IMyo^ _AdoptMyo(libmyo_myo_t opaqueMyo);
@@ -34,6 +42,16 @@ namespace MyoNet
 			}
 
 		public:
+			
+			/// <summary>
+			/// Gets or sets the locking policy for Myos connected to the Hub.
+			/// </summary>
+			property LockingPolicy LockingPolicy 
+			{ 
+				::MyoNet::Myo::LockingPolicy get();
+				void set(::MyoNet::Myo::LockingPolicy);
+			}
+
 			/// <summary>
 			/// Initializes a new instance of <see cref="Hub"/>
 			/// </summary>
@@ -87,7 +105,7 @@ namespace MyoNet
 			/// </summary>
 			/// <param name="duration">The amount of time to run the event loop.</param>
 			void RunOnce(TimeSpan duration);
-
+	
 #if defined NETFX_40
 			//[System::ComponentModel::EditorBrowsableAttribute(System::ComponentModel::EditorBrowsableState::Never)]
 			System::Threading::Tasks::Task^ RunAsync(TimeSpan duration); // not implemented.
@@ -114,16 +132,6 @@ namespace MyoNet
 			/// Occurs when a Myo has been unpaired. 
 			/// </summary>
 			event EventHandler<MyoEventArgs^>^ MyoUnpaired;
-
-			/// <summary>
-			/// Occurs when a paired Myo recognizes that it is on an arm. 
-			/// </summary>
-			event EventHandler<RecognizedArmEventArgs^>^ RecognizedArm;
-
-			/// <summary>
-			/// Occurs when a paired Myo recognizes that it is on an arm. 
-			/// </summary>
-			event EventHandler<MyoEventArgs^>^ LostArm;
 		};
 	}
 }

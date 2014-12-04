@@ -13,8 +13,9 @@ using namespace System::Runtime::InteropServices;
 #include "GyroscopeDataEventArgs.hpp"
 #include "RssiDataEventArgs.hpp"
 #include "PoseChangedEventArgs.hpp"
+#include "RecognizedArmEventArgs.hpp"
 
-#include "HashCodeHelper.hpp"
+#include "FirmwareVersion.hpp"
 
 namespace MyoNet
 {
@@ -25,115 +26,20 @@ namespace MyoNet
 		/// </summary>
 		public enum class VibrationType
 		{
-			Short,
-			Medium,
-			Long,
+			Short = libmyo_vibration_short,
+			Medium = libmyo_vibration_medium,
+			Long = libmyo_vibration_long,
 		};
 
 		/// <summary>
-		/// Structure representing the firmware version of Myo.
+		/// Unlock types support by Myo. 
 		/// </summary>
-		[DebuggerDisplayAttribute("v{ToString(),nq}")]
-		public value struct FirmwareVersion sealed : IEquatable<FirmwareVersion>
+		public enum class UnlockType
 		{
-			/// <summary>
-			/// Myo's major version must match the required major version.
-			/// </summary>
-			initonly unsigned int FirmwareVersionMajor;
-			
-			/// <summary>
-			/// Myo's minor version must match the required minor version.
-			/// </summary>
-			initonly unsigned int FirmwareVersionMinor;
-			
-			/// <summary>
-			/// Myo's patch version must greater or equal to the required patch version.
-			/// </summary>
-			initonly unsigned int FirmwareVersionPatch; 
-			
-			/// <summary>
-			/// Myo's hardware revision; not used to detect firmware version mismatch.
-			/// </summary>
-			initonly unsigned int FirmwareVersionHardwareRev;
-
-		internal:
-			/// <summary>
-			/// Initializes a new instance of <see cref="FirmwareVersion"/> with specified integers.
-			/// </summary>
-			FirmwareVersion(unsigned int major, unsigned int minor, unsigned int patch, unsigned int revision)
-				: FirmwareVersionMajor(major)
-				, FirmwareVersionMinor(minor)
-				, FirmwareVersionPatch(patch)
-				, FirmwareVersionHardwareRev(revision) { }
-
-		public:
-
-			static bool operator == (FirmwareVersion lhs, FirmwareVersion rhs)
-			{
-				return lhs.Equals(rhs);
-			}
-
-			static bool operator != (FirmwareVersion lhs, FirmwareVersion rhs)
-			{
-				return !lhs.Equals(rhs);
-			}
-			
-			/// <summary> 
-			/// Returns the hash code for this FirmwareVersion instance. 
-			/// </summary> 
-			/// <returns>The hash code.</returns> 
-			virtual int GetHashCode( ) override
-			{
-				int hash = this->FirmwareVersionMajor.GetHashCode( );
-				hash = HashCodeHelper::CombineHashCodes(hash, this->FirmwareVersionMinor.GetHashCode( ));
-				hash = HashCodeHelper::CombineHashCodes(hash, this->FirmwareVersionPatch.GetHashCode( ));
-				hash = HashCodeHelper::CombineHashCodes(hash, this->FirmwareVersionHardwareRev.GetHashCode( ));
-
-				return hash;
-			}
-
-			/// <summary>
-			/// Determines whether the specified object is equal to this FirmwareVersion instance.
-			/// </summary>
-			/// <params>
-			/// <param name="obj">The Object to compare against.</param>
-			/// </params>
-			/// <returns>True if the Object is equal to this FirmwareVersion; False otherwise.</returns>
-			bool Equals(Object^ obj) override
-			{
-				if (dynamic_cast<FirmwareVersion^>(obj) == nullptr)
-					return false;
-				return this->Equals((FirmwareVersion)obj);
-			}
-
-			/// <summary>
-			/// Determines whether the specified FirmwareVersion is equal to this FirmwareVersion instance.
-			/// </summary>
-			/// <params>
-			/// <param name="firmwareVersion">The FirmwareVersion to compare against.</param>
-			/// </params>
-			/// <returns>True if the FirmwareVersion is equal to this FirmwareVersion; False otherwise.</returns>
-			virtual bool Equals(FirmwareVersion firmwareVersion)
-			{
-				return this->FirmwareVersionMajor.Equals(firmwareVersion.FirmwareVersionMajor)
-					&& this->FirmwareVersionMinor.Equals(firmwareVersion.FirmwareVersionMinor)
-					&& this->FirmwareVersionPatch.Equals(firmwareVersion.FirmwareVersionPatch)
-					&& this->FirmwareVersionHardwareRev.Equals(firmwareVersion.FirmwareVersionHardwareRev);
-			}
-
-			/// <summary>
-			/// Returns a String representing this FirmwareVersion instance.
-			/// </summary>
-			/// <returns>The string representation</returns>
-			String^ ToString( ) override 
-			{
-				return String::Format("{0}.{1}.{2}.{3}",
-					FirmwareVersionMajor,
-					FirmwareVersionMinor,
-					FirmwareVersionPatch,
-					FirmwareVersionHardwareRev);
-			}
+			Timed = libmyo_unlock_timed,
+			Hold = libmyo_unlock_hold,
 		};
+		
 
 		/// <summary>
 		/// Interface to a instance of a Myo device.
@@ -183,6 +89,26 @@ namespace MyoNet
 			/// Occurs when a paired Myo has provided a new pose. 
 			/// </summary>
 			event EventHandler<PoseChangedEventArgs^>^ PoseChanged;
+
+			/// <summary>
+			/// Occurs when a paired Myo recognizes that it is on an arm. 
+			/// </summary>
+			event EventHandler<RecognizedArmEventArgs^>^ RecognizedArm;
+
+			/// <summary>
+			/// Occurs when a paired Myo recognizes that it is on an arm. 
+			/// </summary>
+			event EventHandler<MyoEventArgs^>^ LostArm;
+
+			/// <summary>
+			/// Occurs when a paired Myo becomes unlocked.
+			/// </summary>
+			event EventHandler<MyoEventArgs^>^ Unlocked;
+
+			/// <summary>
+			/// Occurs when a paired Myo becomes locked.
+			/// </summary>
+			event EventHandler<MyoEventArgs^>^ Locked;
 			
 			/// <summary>
 			/// Engage the Myo's built in vibration motor.
@@ -196,6 +122,26 @@ namespace MyoNet
 			/// Request the RSSI of the Myo.
 			/// </summary>
 			void RequestRssi( );
+
+			/// <summary>Unlock the Myo.</summary>
+			/// <remarks>
+			/// Myo will remain unlocked for a short amount of time, after which it will automatically lock again.
+			/// If Myo was locked, an Unlock event will be generated.
+			/// </remarks>
+			virtual void Unlock(UnlockType type);
+
+			/// <summary>
+			/// Force the Myo to lock immediately.
+			/// </summary>
+			/// <remarks>
+			/// Will cause Myo to vibrate.
+			/// </remarks>
+			virtual void Lock( );
+
+			/// <summary>
+			/// Notify the Myo that a user action was recognized.
+			/// </summary>
+			virtual void NotifyUserAction( );
 		};
 
 		/// <summary>
@@ -266,6 +212,26 @@ namespace MyoNet
 			/// Occurs when a paired Myo has provided a new pose. 
 			/// </summary>
 			virtual event EventHandler<PoseChangedEventArgs^>^ PoseChanged;
+
+			/// <summary>
+			/// Occurs when a paired Myo recognizes that it is on an arm. 
+			/// </summary>
+			virtual event EventHandler<RecognizedArmEventArgs^>^ RecognizedArm;
+
+			/// <summary>
+			/// Occurs when a paired Myo recognizes that it is on an arm. 
+			/// </summary>
+			virtual event EventHandler<MyoEventArgs^>^ LostArm;
+
+			/// <summary>
+			/// Occurs when a paired Myo becomes unlocked.
+			/// </summary>
+			virtual event EventHandler<MyoEventArgs^>^ Unlocked;
+
+			/// <summary>
+			/// Occurs when a paired Myo becomes locked.
+			/// </summary>
+			virtual event EventHandler<MyoEventArgs^>^ Locked;
 			
 			/// <summary>
 			/// Engage the Myo's built in vibration motor.
@@ -279,6 +245,27 @@ namespace MyoNet
 			/// Request the RSSI of the Myo.
 			/// </summary>
 			virtual void RequestRssi( );
+
+
+			/// <summary>Unlock the Myo.</summary>
+			/// <remarks>
+			/// Myo will remain unlocked for a short amount of time, after which it will automatically lock again.
+			/// If Myo was locked, an onUnlock event will be generated.
+			/// </remarks>
+			virtual void Unlock(UnlockType type);
+
+			/// <summary>
+			/// Force the Myo to lock immediately.
+			/// </summary>
+			/// <remarks>
+			/// Will cause Myo to vibrate.
+			/// </remarks>
+			virtual void Lock( );
+
+			/// <summary>
+			/// Notify the Myo that a user action was recognized.
+			/// </summary>
+			virtual void NotifyUserAction( );
 		};
 	}
 }
