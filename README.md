@@ -4,7 +4,7 @@ Myo.NET is an unofficial wrapper of the [*Thalmic Labs Myo&trade;*](https://www.
 
 ## Support
 
-- Myo SDK for Windows Beta version 7.0 (NuGet Package v2.0.0)
+- Myo SDK for Windows Beta version 7.0 (NuGet Package v2.0.0, currently not uploaded, waiting for Myo replacement to test.)
 - Myo SDK for Windows Beta version 6.0 (NuGet Package v1.0.1)
 
 ## Dependencies
