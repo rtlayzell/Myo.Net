@@ -5,16 +5,19 @@
 		Title="MainWindow" Height="350" Width="525"
 		TextOptions.TextFormattingMode="Display">
 	
-	<Grid local:MyoDevice.Connected="OnMyoConnected"
-		  local:MyoDevice.Disconnected="OnMyoConnected"
-		  local:MyoDevice.AccelerationChanged="OnMyoAccelerationChanged">
+	<Grid>
 		
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 		
-		<StackPanel Grid.Column="1" SnapsToDevicePixels="True">
+		<StackPanel Grid.Column="1" SnapsToDevicePixels="True"
+					local:MyoDevice.Connected="OnMyoConnected"
+					local:MyoDevice.Disconnected="OnMyoConnected"
+					local:MyoDevice.AccelerationChanged="OnMyoAccelerationChanged"
+					local:MyoDevice.OrientationChanged="OnMyoOrientationChanged">
+			
 			<GroupBox Header="Acceleration Data" Margin="10">
 				<StackPanel Margin="10">
 					<ProgressBar x:Name="xbar" Height="16" Margin="0,0,0,5" Foreground="#FFDE3838"/>
@@ -22,6 +25,15 @@
 					<ProgressBar x:Name="zbar" Height="16" Margin="0,0,0,0" Foreground="#FF2465F1"/>
 				</StackPanel>
 			</GroupBox>
+
+			<GroupBox Header="Orientation Data" Margin="10">
+				<StackPanel Margin="10">
+					<ProgressBar x:Name="xbar2" Height="16" Margin="0,0,0,5" Foreground="#FF6BC3EC"/>
+					<ProgressBar x:Name="ybar2" Height="16" Margin="0,0,0,5" Foreground="#FFBC56D3"/>
+					<ProgressBar x:Name="zbar2" Height="16" Margin="0,0,0,5" Foreground="#FFD4DA46"/>
+				</StackPanel>
+			</GroupBox>
+			
 		</StackPanel>
 	</Grid>
 </Window>

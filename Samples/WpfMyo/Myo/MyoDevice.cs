@@ -10,7 +10,6 @@ using MyoNet.Myo;
 
 namespace WpfMyo.Myo
 {
-
 	public static class MyoDevice
 	{
 		private static IHub _hub;
@@ -18,20 +17,20 @@ namespace WpfMyo.Myo
 		private static IDictionary<RoutedEvent, IList<UIElement>> _elements;
 
 		public static readonly RoutedEvent ConnectedEvent =
-			EventManager.RegisterRoutedEvent("Paired", RoutingStrategy.Bubble,
+			EventManager.RegisterRoutedEvent("Connected", RoutingStrategy.Tunnel,
 			typeof(MyoRoutedEventHandler), typeof(MyoDevice));
 
 		public static readonly RoutedEvent DisconnectedEvent =
-			EventManager.RegisterRoutedEvent("Disconnected", RoutingStrategy.Bubble,
+			EventManager.RegisterRoutedEvent("Disconnected", RoutingStrategy.Tunnel,
 			typeof(MyoRoutedEventHandler), typeof(MyoDevice));
 
 		public static readonly RoutedEvent AccelerationChangedEvent =
-			EventManager.RegisterRoutedEvent("tAccelerationChanged", RoutingStrategy.Bubble,
+			EventManager.RegisterRoutedEvent("tAccelerationChanged", RoutingStrategy.Tunnel,
 			typeof(AccelerationEventHandler), typeof(MyoDevice));
 
 		public static readonly RoutedEvent OrientationChangedEvent =
-			EventManager.RegisterRoutedEvent("OrientationChanged", RoutingStrategy.Bubble,
-			typeof(MyoRoutedEventHandler), typeof(MyoDevice));
+			EventManager.RegisterRoutedEvent("tOrientationChanged", RoutingStrategy.Tunnel,
+			typeof(OrientationEventHandler), typeof(MyoDevice));
 
 		public static void AddConnectedHandler(DependencyObject d, MyoRoutedEventHandler handler)
 		{
@@ -63,12 +62,12 @@ namespace WpfMyo.Myo
 			RemoveHandler(MyoDevice.AccelerationChangedEvent, d, handler);
 		}
 
-		public static void AddOrientationChangedHandler(DependencyObject d, MyoRoutedEventHandler handler)
+		public static void AddOrientationChangedHandler(DependencyObject d, OrientationEventHandler handler)
 		{
 			AddHandler(MyoDevice.OrientationChangedEvent, d, handler);
 		}
 
-		public static void RemoveOrientationChangedHandler(DependencyObject d, MyoRoutedEventHandler handler)
+		public static void RemoveOrientationChangedHandler(DependencyObject d, OrientationEventHandler handler)
 		{
 			RemoveHandler(MyoDevice.OrientationChangedEvent, d, handler);
 		}
@@ -87,6 +86,7 @@ namespace WpfMyo.Myo
 			_elements.Add(MyoDevice.ConnectedEvent, new List<UIElement>( ));
 			_elements.Add(MyoDevice.DisconnectedEvent, new List<UIElement>( ));
 			_elements.Add(MyoDevice.AccelerationChangedEvent, new List<UIElement>( ));
+			_elements.Add(MyoDevice.OrientationChangedEvent, new List<UIElement>( ));
 
 			// invoke Hub.Run( ) in a background thread for the duration of the program.
 			Thread t = new Thread(( ) => _hub.Run( ));
@@ -122,8 +122,8 @@ namespace WpfMyo.Myo
 
 		static void OnOrientationDataAcquired(object sender, OrientationDataEventArgs e)
 		{
-			//var args = new AccelerationChangedEventArgs(MyoDevice.AccelerationChangedEvent, sender, e.Myo, e.TimeStamp, e.Accelerometer);
-			//RaiseEvent(MyoDevice.AccelerationChangedEvent, args);
+			var args = new OrientationChangedEventArgs(MyoDevice.OrientationChangedEvent, sender, e.Myo, e.TimeStamp, e.Orientation);
+			RaiseEvent(MyoDevice.OrientationChangedEvent, args);
 		}
 
 		private static void AddHandler(RoutedEvent ev, DependencyObject d, Delegate handler)

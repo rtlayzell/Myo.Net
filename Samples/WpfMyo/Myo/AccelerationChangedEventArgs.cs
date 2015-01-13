@@ -9,6 +9,7 @@ namespace WpfMyo.Myo
 {
 	public delegate void MyoRoutedEventHandler(object sender, MyoRoutedEventArgs e);
 	public delegate void AccelerationEventHandler(object sender, AccelerationChangedEventArgs e);
+	public delegate void OrientationEventHandler(object sender, OrientationChangedEventArgs e);
 
 	public class MyoRoutedEventArgs : RoutedEventArgs
 	{
@@ -43,6 +44,21 @@ namespace WpfMyo.Myo
 			: base(routedEvent, source, myo, timeStamp) 
 		{
 			Acceleration = acceleration;
+		}
+	}
+
+	public class OrientationChangedEventArgs : MyoRoutedEventArgs
+	{
+		public Quaternion Orientation
+		{
+			get;
+			private set;
+		}
+
+		public OrientationChangedEventArgs(RoutedEvent routedEvent, object source, IMyo myo, DateTimeOffset timeStamp, Quaternion orientation)
+			: base(routedEvent, source, myo, timeStamp)
+		{
+			Orientation = orientation;
 		}
 	}
 }

@@ -53,5 +53,27 @@ namespace WpfMyo
 			ybar.Value = sum.Y * ybar.Maximum;
 			zbar.Value = sum.Z * zbar.Maximum;
 		}
+
+		private void OnMyoOrientationChanged(object sender, OrientationChangedEventArgs e)
+		{
+			// we use the average of the past 20 values of e.Acceleration
+			// to smooth the values being visualized in the UI.
+
+			if (orient.Count >= 20) orient.Dequeue( );
+			orient.Enqueue(e.Orientation);
+
+			Quaternion sum = Quaternion.Zero;
+			foreach (var vec in orient)
+				sum += vec;
+
+			sum.X /= orient.Count;
+			sum.Y /= orient.Count;
+			sum.Z /= orient.Count;
+			sum.W /= orient.Count;
+
+			xbar2.Value = Quaternion.Roll(sum) * xbar2.Maximum;
+			ybar2.Value = Quaternion.Pitch(sum) * ybar2.Maximum;
+			zbar2.Value = Quaternion.Yaw(sum) * zbar2.Maximum;
+		}
 	}
 }
