@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfMyo.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:local="clr-namespace:WpfMyo.Myo"
+		Title="MainWindow" Height="350" Width="525"
+		TextOptions.TextFormattingMode="Display">
+	
+	<Grid local:MyoDevice.Connected="OnMyoConnected"
+		  local:MyoDevice.Disconnected="OnMyoConnected"
+		  local:MyoDevice.AccelerationChanged="OnMyoAccelerationChanged">
+		
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		
+		<StackPanel Grid.Column="1" SnapsToDevicePixels="True">
+			<GroupBox Header="Acceleration Data" Margin="10">
+				<StackPanel Margin="10">
+					<ProgressBar x:Name="xbar" Height="16" Margin="0,0,0,5" Foreground="#FFDE3838"/>
+					<ProgressBar x:Name="ybar" Height="16" Margin="0,0,0,5" Foreground="#FF50A827"/>
+					<ProgressBar x:Name="zbar" Height="16" Margin="0,0,0,0" Foreground="#FF2465F1"/>
+				</StackPanel>
+			</GroupBox>
+		</StackPanel>
+	</Grid>
+</Window>
