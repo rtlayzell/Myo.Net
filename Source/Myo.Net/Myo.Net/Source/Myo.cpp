@@ -76,7 +76,21 @@ namespace MyoNet
 			case libmyo_event_locked:
 				this->Locked(this, gcnew MyoEventArgs(this, dtime));
 				break;
+
+			case libmyo_event_emg:
+				array<Byte>^ data = gcnew array<Byte>(8);
+				for (int i = 0; i < data->Length; ++i)
+					data[i] = libmyo_event_get_emg(ev, 0);
+
+				this->EmgDataAcquired(this, gcnew EmgDataEventArgs(this, dtime, data));
 			}
+		}
+
+		void Myo::SetStreamEmg(StreamEmgType type)
+		{
+			libmyo_error_details_t err = 0;
+			libmyo_set_stream_emg(_myo, static_cast<libmyo_stream_emg_t>(type), &err);
+			ThrowHelper::ThrowOnError(err);
 		}
 
 		void Myo::Vibrate(VibrationType type)

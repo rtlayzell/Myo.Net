@@ -35,7 +35,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -49,7 +49,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -180,6 +180,7 @@
     <ClCompile Include="Source\AccelerometerDataEventArgs.cpp" />
     <ClCompile Include="Source\Arm.cpp" />
     <ClCompile Include="Source\AssemblyInfo.cpp" />
+    <ClCompile Include="Source\EmgDataEventArgs.cpp" />
     <ClCompile Include="Source\GyroscopeDataEventArgs.cpp" />
     <ClCompile Include="Source\HashCodeHelper.cpp" />
     <ClCompile Include="Source\Hub.cpp" />
@@ -203,6 +204,7 @@
   <ItemGroup>
     <ClInclude Include="Include\AccelerometerDataEventArgs.hpp" />
     <ClInclude Include="Include\Arm.hpp" />
+    <ClInclude Include="Include\EmgDataEventArgs.hpp" />
     <ClInclude Include="Include\FirmwareVersion.hpp" />
     <ClInclude Include="Include\GyroscopeDataEventArgs.hpp" />
     <ClInclude Include="Include\HashCodeHelper.hpp" />

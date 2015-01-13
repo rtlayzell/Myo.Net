@@ -100,7 +100,20 @@ namespace MyoNet
 			/// Occurs when a paired Myo becomes locked.
 			/// </summary>
 			virtual event EventHandler<MyoEventArgs^>^ Locked;
+
+			/// <summary>
+			/// Occurs when a paired Myo has provided new Emg data. 
+			/// </summary>
+			virtual event EventHandler<EmgDataEventArgs^>^ EmgDataAcquired;
 			
+			/// <summary>
+			/// Sets the EMG streaming modes for a Myo.
+			/// </summary>
+			/// <params>
+			/// <param name="type">The streaming mode.</param>
+			/// </params>
+			virtual void SetStreamEmg(StreamEmgType type);
+
 			/// <summary>
 			/// Engage the Myo's built in vibration motor.
 			/// </summary>
@@ -113,7 +126,6 @@ namespace MyoNet
 			/// Request the RSSI of the Myo.
 			/// </summary>
 			virtual void RequestRssi( );
-
 
 			/// <summary>Unlock the Myo.</summary>
 			/// <remarks>

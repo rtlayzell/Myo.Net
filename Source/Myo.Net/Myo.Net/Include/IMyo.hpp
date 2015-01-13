@@ -5,6 +5,7 @@ using namespace System::Diagnostics;
 using namespace System::ComponentModel;
 
 #include "MyoEventArgs.hpp"
+#include "EmgDataEventArgs.hpp"
 #include "AccelerometerDataEventArgs.hpp"
 #include "OrientationDataEventArgs.hpp"
 #include "GyroscopeDataEventArgs.hpp"
@@ -17,6 +18,15 @@ namespace MyoNet
 {
 	namespace Myo
 	{
+		/// <summary>
+		/// Valid EMG streaming modes for a Myo.
+		/// </summary>
+		public enum class StreamEmgType
+		{
+			Disabled = libmyo_stream_emg_disabled,
+			Enabled = libmyo_stream_emg_enabled,
+		};
+
 		/// <summary>
 		/// Types of vibration supported by the Myo. 
 		/// </summary>
@@ -105,7 +115,20 @@ namespace MyoNet
 			/// Occurs when a paired Myo becomes locked.
 			/// </summary>
 			event EventHandler<MyoEventArgs^>^ Locked;
+
+			/// <summary>
+			/// Occurs when a paired Myo has provided new Emg data. 
+			/// </summary>
+			event EventHandler<EmgDataEventArgs^>^ EmgDataAcquired;
 			
+			/// <summary>
+			/// Sets the EMG streaming modes for a Myo.
+			/// </summary>
+			/// <params>
+			/// <param name="type">The streaming mode.</param>
+			/// </params>
+			void SetStreamEmg(StreamEmgType type);
+
 			/// <summary>
 			/// Engage the Myo's built in vibration motor.
 			/// </summary>
