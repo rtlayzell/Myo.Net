@@ -28,11 +28,18 @@ namespace WpfMyo
 		public MainWindow( )
 		{
 			InitializeComponent( );
+			xbar.Minimum = -xbar.Maximum;
+			ybar.Minimum = -ybar.Maximum;
+			zbar.Minimum = -zbar.Maximum;
+
+			xbar2.Minimum = -xbar2.Maximum;
+			ybar2.Minimum = -ybar2.Maximum;
+			zbar2.Minimum = -zbar2.Maximum;
 		}
 
 		private void OnMyoConnected(object sender, MyoRoutedEventArgs e)
 		{
-			
+			MessageBox.Show("hello world!");
 		}
 
 		private void OnMyoAccelerationChanged(object sender, AccelerationChangedEventArgs e)
@@ -40,18 +47,14 @@ namespace WpfMyo
 			// we use the average of the past 20 values of e.Acceleration
 			// to smooth the values being visualized in the UI.
 
-			if (accel.Count >= 20) accel.Dequeue( );
+			if (accel.Count >= 10) accel.Dequeue( );
 			accel.Enqueue(e.Acceleration);
 
-			Vector3 sum = Vector3.Zero;
-			foreach (var vec in accel)
-				sum += vec;
+			Vector3 avg = accel.Aggregate((x, y) => x + y) / accel.Count;
 
-			sum /= accel.Count;
-
-			xbar.Value = sum.X * xbar.Maximum;
-			ybar.Value = sum.Y * ybar.Maximum;
-			zbar.Value = sum.Z * zbar.Maximum;
+			xbar.Value = avg.X * xbar.Maximum;
+			ybar.Value = avg.Y * ybar.Maximum;
+			zbar.Value = avg.Z * zbar.Maximum;
 		}
 
 		private void OnMyoOrientationChanged(object sender, OrientationChangedEventArgs e)
@@ -59,21 +62,19 @@ namespace WpfMyo
 			// we use the average of the past 20 values of e.Acceleration
 			// to smooth the values being visualized in the UI.
 
-			if (orient.Count >= 20) orient.Dequeue( );
+			if (orient.Count >= 10) orient.Dequeue( );
 			orient.Enqueue(e.Orientation);
 
-			Quaternion sum = Quaternion.Zero;
-			foreach (var vec in orient)
-				sum += vec;
+			Quaternion avg = orient.Aggregate((x, y) => x + y);
 
-			sum.X /= orient.Count;
-			sum.Y /= orient.Count;
-			sum.Z /= orient.Count;
-			sum.W /= orient.Count;
+			avg.X /= orient.Count;
+			avg.Y /= orient.Count;
+			avg.Z /= orient.Count;
+			avg.W /= orient.Count;
 
-			xbar2.Value = Quaternion.Roll(sum) * xbar2.Maximum;
-			ybar2.Value = Quaternion.Pitch(sum) * ybar2.Maximum;
-			zbar2.Value = Quaternion.Yaw(sum) * zbar2.Maximum;
+			xbar2.Value = Quaternion.Roll(avg) * xbar2.Maximum;
+			ybar2.Value = Quaternion.Pitch(avg) * ybar2.Maximum;
+			zbar2.Value = Quaternion.Yaw(avg) * zbar2.Maximum;
 		}
 	}
 }
